@@ -5,7 +5,8 @@
     'use strict';
 
     angular.module('naf.lecture')
-        .factory('Lecture', ['$resource', 'Config', lectureFactory]);
+        .factory('Lecture', ['$resource', 'Config', lectureFactory])
+        .factory('Vimeo', ['$resource', 'Config', vimeoFactory]);
 
     //Lecture service
 
@@ -17,5 +18,14 @@
                 method: 'PUT'
             }
         });
+    }
+
+    function vimeoFactory($resource, Config){
+        return $resource(Config.vimeoApi + '/', {}, {
+            getUser: {
+                url: Config.vimeoApi + '/me',
+                method: 'GET'
+            }
+        })
     }
 })();

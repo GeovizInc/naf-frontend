@@ -1,3 +1,8 @@
-/**
- * Created by Leon on 2016/2/5.
- */
+(function() {
+    angular.module('naf.config', [])
+        .constant('Config', {
+            api: '',
+            vimeoApi: 'https://api.vimeo.com'
+        });
+
+})();
