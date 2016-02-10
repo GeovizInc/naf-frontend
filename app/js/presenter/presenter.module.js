@@ -4,7 +4,7 @@
 (function() {
     'use strict';
 
-    angular.module('naf.presenter', ['ngRoute', 'ngResource'])
+    angular.module('naf.presenter', [])
         .config(['$routeProvider', config]);
 
     function config($routeProvider){

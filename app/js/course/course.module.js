@@ -4,7 +4,7 @@
 (function() {
     'use strict';
 
-    angular.module('naf.course', ['ngRoute', 'ngResource'])
+    angular.module('naf.course', [])
         .config(['$routeProvider', config]);
 
     function config($routeProvider){

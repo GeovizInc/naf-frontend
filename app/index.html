@@ -1,46 +1,46 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html lang="en" ng-app="naf" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html lang="en" ng-app="naf" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html lang="en" ng-app="naf" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" ng-app="naf" class="no-js"> <!--<![endif]-->
+<html lang="en" ng-app="naf">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My AngularJS App</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>NAF</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
-<div class="container">
-    <div ng-view></div>
-</div>
-
-<!-- In production use:
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
--->
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-resource/angular-resource.min.js"></script>
-<script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
-<script src="js/app.module.js"></script>
-<script src="js/app.config.js"></script>
-<script src="js/lecture/lecture.module.js"></script>
-<script src="js/lecture/lecture.controllers.js"></script>
-<script src="js/lecture/lecture.services.js"></script>
+    <div class="container">
+        <div ng-view></div>
+    </div>
+    <script src="js/app.module.js"></script>
+    <script src="js/app.config.js"></script>
+    <!--Auth-->
+    <script src="js/auth/auth.module.js"></script>
+    <script src="js/auth/auth.controllers.js"></script>
+    <script src="js/auth/auth.services.js"></script>
+    <!--Presenter-->
+    <script src="js/presenter/presenter.module.js"></script>
+    <script src="js/presenter/presenter.services.js"></script>
+    <script src="js/presenter/presenter.controllers.js"></script>
+    <!--Teacher-->
+    <script src="js/teacher/teacher.module.js"></script>
+    <script src="js/teacher/teacher.controllers.js"></script>
+    <script src="js/teacher/teacher.services.js"></script>
+    <!--Course-->
+    <script src="js/course/course.module.js"></script>
+    <script src="js/course/course.controllers.js"></script>
+    <script src="js/course/course.services.js"></script>
+    <!--attendee-->
+    <script src="js/attendee/attendee.module.js"></script>
+    <script src="js/attendee/attendee.controllers.js"></script>
+    <!--Lecture-->
+    <script src="js/lecture/lecture.module.js"></script>
+    <script src="js/lecture/lecture.controllers.js"></script>
+    <script src="js/lecture/lecture.services.js"></script>
 </body>
 </html>

@@ -1,13 +1,11 @@
-'use strict';
+/**
+ * Created by Leon on 2016/2/5.
+ */
+(function() {
+    'use strict';
 
-// Declare app level module which depends on views, and components
-angular.module('naf', [
-    'ngRoute',
-    'ngResource',
-    'ngFileUpload',
-    'naf.config',
-    'naf.lecture'
-]).
-config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.otherwise({redirectTo: '/'});
-}]);
+    angular.module('naf', [
+        'ngRoute', 'ngResource', 'ngFileUpload', 'naf.presenter', 'naf.teacher', 'naf.course', 'naf.lecture', 'naf.attendee',
+        'naf.auth']);
+
+})();

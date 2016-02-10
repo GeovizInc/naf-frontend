@@ -4,7 +4,7 @@
 (function() {
     'use strict';
 
-    angular.module('naf.attendee', ['ngRoute', 'ngResource'])
+    angular.module('naf.attendee', [])
         .config(['$routeProvider', config]);
 
     function config($routeProvider){
