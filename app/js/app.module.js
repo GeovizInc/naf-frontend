@@ -4,6 +4,7 @@
 angular.module('naf', [
     'ngRoute',
     'ngResource',
+    'ngFileUpload',
     'naf.config',
     'naf.lecture'
 ]).

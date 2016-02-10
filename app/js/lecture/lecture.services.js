@@ -25,6 +25,18 @@
             getUser: {
                 url: Config.vimeoApi + '/me',
                 method: 'GET'
+            },
+            getTicket: {
+                url: Config.vimeoApi + '/me/videos',
+                method: 'POST'
+            },
+            deleteTicket: {
+                url: Config.vimeoApi + '/users/:userId/tickets/:ticketId',
+                method: 'DELETE',
+                params: {
+                    userId: '@userId',
+                    ticketId: '@ticketId'
+                }
             }
         })
     }
