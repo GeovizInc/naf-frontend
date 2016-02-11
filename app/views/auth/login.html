@@ -20,6 +20,9 @@
                 <div class="form-group">
                     <button class="btn btn-primary" ng-click="login()">Login</button>
                 </div>
+                <div class="form-group">
+                    <div ng-if="users.error">{{users.error}}</div>
+                </div>
             </div>
         </from>
     </div>
