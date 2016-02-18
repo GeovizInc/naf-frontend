@@ -1,29 +1,35 @@
-<section calss="container">
-    <h1>Login</h1>
-    <div class="row">
-        <from id="login" name="loginForm" calss="horm-horizontal">
-            <div class="col-lg-6">
-                <div class="form-group">
-                    <label for="inputEmail">Enter Email</label>
-                    <div class="input-group">
-                        <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Enter Email" ng-model="users.email" required>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Enter Password</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" ng-model="users.password" required>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary" ng-click="login()">Login</button>
+<div class="login-box">
+    <div class="login-logo">
+        <a href=""><b>NAF</b>-Education</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in</p>
+
+        <form class="margin-bottom">
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Enter Email" ng-model="users.email" required="required">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" ng-model="users.password" required="required">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="button" class="btn btn-primary btn-block btn-flat" ng-click="login()">Sign In</button>
                 </div>
                 <div class="form-group">
                     <div ng-if="users.error">{{users.error}}</div>
                 </div>
+                <!-- /.col -->
             </div>
-        </from>
+        </form>
+
+        <a href="">I forgot my password</a><br>
+        <a href="#/register" class="text-center">Register a new membership</a>
+
     </div>
-</section>
+    <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
