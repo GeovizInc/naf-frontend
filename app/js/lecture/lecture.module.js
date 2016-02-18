@@ -9,8 +9,16 @@
 
     function config($routeProvider) {
         $routeProvider
-            .when('/courses/:course_id/lectures', {
-                templateUrl: 'view/lecture/lectures.html',
+            .when('/lecture/create', {
+                templateUrl: 'views/lecture/createEdit.html',
+                controller: 'LectureController'
+            })
+            .when('/lecture/:lecture_id', {
+                templateUrl: 'views/lecture/show.html',
+                controller: 'LectureController'
+            })
+            .when('/lecture/:lecture_id/edit', {
+                templateUrl: 'views/lecture/createEdit.html',
                 controller: 'LectureController'
             })
             .when('/lecture/upload', {

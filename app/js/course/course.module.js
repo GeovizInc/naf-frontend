@@ -9,16 +9,20 @@
 
     function config($routeProvider){
         $routeProvider
-            .when('/courses/:course_id/detail', {
-                templateUrl: 'view/course/detail.html',
+            .when('/course', {
+                templateUrl: 'views/course/index.html',
+                controller: 'CourseStoreController'
+            })
+            .when('/course/create', {
+                templateUrl: 'views/course/createEdit.html',
+                controller: 'CourseStoreController'
+            })
+            .when('/course/:course_id', {
+                templateUrl: 'views/course/show.html',
                 controller: 'CourseViewController'
             })
             .when('/course/:course_id/edit', {
-                templateUrl: 'view/course/edit_course.html',
-                controller: 'CourseEditController'
-            })
-            .when('/addcourse', {
-                templateUrl: 'view/course/edit_course.html',
+                templateUrl: 'views/course/createEdit.html',
                 controller: 'CourseEditController'
             });
     }

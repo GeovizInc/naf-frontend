@@ -1,0 +1,118 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Manage Lectures
+        <small></small>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-3">
+            <!-- general form elements -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add / Edit Lecture</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="teacher">Teacher</label>
+                            <select2 class="form-control" id="teacher" ng-model="teacher" ng-options="teacher.id as teacher.name for teacher in teachers track by teacher.id"></select2>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <date-time-picker id="date" class="form-control" ng-model="date" placeholder="Date"></date-time-picker>
+                        </div>
+                        <div class="form-group">
+                            <label for="intro">Introduction</label>
+                            <textarea class="form-control" rows="5" id="intro"></textarea>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+
+
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-9">
+            <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title">Lectures</h3>
+                    <div class="box-tools">
+                        <div class="input-group" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control input-sm pull-right"
+                                   placeholder="Search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <th width="1%"></th>
+                            <th>Name</th>
+                            <th>Teacher</th>
+                            <th>Date</th>
+                            <th width="1%"></th>
+                        </tr>
+                        <tr>
+                            <td><img src="http://placehold.it/100x75"/></td>
+                            <td>Java Lecture 3</td>
+                            <td class="teacher"><a href="">Liang Guo</a></td>
+                            <td>2016-01-03 8:00 AM</td>
+                            <td><a href="" type="button" class="btn btn-default btn-xs">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <td><img src="http://placehold.it/100x75"/></td>
+                            <td>Java Lecture 2</td>
+                            <td class="teacher"><a href="">Liang Guo</a></td>
+                            <td>2016-01-02 8:00 AM</td>
+                            <td><a href="" type="button" class="btn btn-default btn-xs">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <td><img src="http://placehold.it/100x75"/></td>
+                            <td>Java Lecture 1</td>
+                            <td class="teacher"><a href="">Jiadong Hu</a></td>
+                            <td>2016-01-01 8:00 AM</td>
+                            <td><a href="" type="button" class="btn btn-default btn-xs">Edit</a></td>
+                        </tr>
+                    </table>
+                </div><!-- /.box-body -->
+
+                <div class="box-footer">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div><!-- /.box -->
+
+
+        </div>
+        <!--/.col (right) -->
+
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

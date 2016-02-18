@@ -36,6 +36,12 @@
                 params: {
                     userId: '@userId',
                     ticketId: '@ticketId'
+                },
+                transformResponse: function(data, headers){
+                    var response = {};
+                    response.data = data;
+                    response.headers = headers();
+                    return response;
                 }
             }
         })

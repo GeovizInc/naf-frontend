@@ -1,20 +1,25 @@
-<div class="row">
-    <h1>Upload the Lecture Video</h1>
+<h1>Upload the Lecture Video</h1>
 
-    <hr/>
+<hr/>
 
-    <form class="form-horizontal" ng-submit="uploadVideo(videoFile)">
-        <div class="form-group">
-            <label for="file" class="col-sm-2 control-label">File</label>
+<form class="form-horizontal" ng-submit="uploadVideo(videoFile)">
+    <div class="form-group">
+        <label for="file" class="col-sm-2 control-label">File</label>
 
-            <div class="col-sm-4">
-                <input class="form-control" type="file" id="file" name="file" ngf-select ng-model="videoFile" required placeholder="File">
-            </div>
+        <div class="col-sm-4">
+            <input class="form-control" type="file" id="file" name="file" ngf-select ng-model="videoFile" required
+                   placeholder="File">
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-lg btn-success">Upload</button>
-            </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-lg btn-success">Upload</button>
         </div>
-    </form>
-</div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+             style="width:{{videoFile.progress}}%">
+            <span class="sr-only">70% Complete</span>
+        </div>
+    </div>
+</form>

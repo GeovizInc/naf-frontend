@@ -9,16 +9,16 @@
 
     function config($routeProvider){
         $routeProvider
-            .when('/presenters/:presenter_id/profile', {
-                templateUrl: 'view/presenter/profile.html',
+            .when('/presenter/:presenter_id', {
+                templateUrl: 'views/presenter/show.html',
                 controller: 'PresenterEditController'
             })
-            .when('/presenters/:presenter_id/courses', {
-                templateUrl: 'view/presenter/courses.html',
+            .when('/presenter/:presenter_id/course', {
+                templateUrl: 'views/presenter/course.html',
                 controller: 'PresenterEditController'
             })
-            .when('/presenters/:presenter_id/teachers', {
-                templateUrl: 'view/presenter/teachers.html',
+            .when('/presenter/:presenter_id/teacher', {
+                templateUrl: 'views/presenter/teacher.html',
                 controller: 'PresenterEditController'
             });
     }
