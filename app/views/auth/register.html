@@ -1,29 +1,29 @@
 <div class="register-box">
     <div class="register-logo">
-        <a href="../../index2.html"><b>NAF</b>-Education</a>
+        <a href=""><b>NAF</b>-Education</a>
     </div>
 
     <div class="register-box-body">
         <p class="login-box-msg">Register</p>
-        <form class="margin-bottom" action="../../index.html" method="post">
+        <form class="margin-bottom">
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email">
+                <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Enter Email" ng-model="users.email" required="required">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" id="password" placeholder="Enter Password" ng-model="users.password" required="required">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Retype password">
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Retype password" ng-model="users.confirmPassword" required="required" match-to="users.password">
                 <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                    <button type="button" class="btn btn-primary btn-block btn-flat" ng-click="register()">Register</button>
                 </div><!-- /.col -->
             </div>
         </form>
-        <a href="login.html" class="text-center">I already have a membership</a>
+        <a href="#/" class="text-center">I already have a membership</a>
     </div><!-- /.form-box -->
 </div><!-- /.register-box -->

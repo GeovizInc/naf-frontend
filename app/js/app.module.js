@@ -5,7 +5,20 @@
     'use strict';
 
     angular.module('naf', [
-        'ngRoute', 'ngResource', 'ngFileUpload', 'naf.presenter', 'naf.config', 'naf.teacher', 'naf.course', 'naf.lecture', 'naf.attendee',
-        'naf.auth']);
+        'ngRoute', 'ngResource', 'angular-storage', 'ngFileUpload', 'angular-jwt', 'flash',  'naf.presenter', 'naf.config', 'naf.teacher', 'naf.course', 'naf.lecture', 'naf.attendee',
+        'naf.auth'])
+
+        .config(['$httpProvider', configApp]);
+
+    function configApp($httpProvider) {
+
+        $httpProvider.interceptors.push('AuthInterceptor');
+    }
+
+
+
+
+
+
 
 })();
