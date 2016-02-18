@@ -9,7 +9,7 @@
 
     function config($routeProvider){
         $routeProvider
-            .when('attendee/presenters/:presenter_id', {
+            .when('attendee/presenter/:presenter_id', {
                 templateUrl: 'view/attendee/presenterprofile.html',
                 controller: 'PresenterViewController'
             })

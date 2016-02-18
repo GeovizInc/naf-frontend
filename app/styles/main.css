@@ -1,0 +1,90 @@
+.table tbody > tr > td {
+    vertical-align: middle;
+}
+
+.table tbody > tr > td.course-name a {
+    font-size: 20px;
+}
+
+.teacher a {
+    text-decoration: underline;
+    margin-right: 5px;
+}
+
+.course-block:before,
+.course-block:after {
+    content: " ";
+    display: table;
+}
+
+.course-block:after {
+    clear: both;
+}
+
+.course-block img {
+    width: 200px;
+    height: 150px;
+    float: left;
+    margin-right: 10px;
+}
+
+.course-block .course-name,
+.course-block .info,
+.course-block .description {
+    display: block;
+}
+
+.course-block .course-name {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.course-block .info {
+    color: #999;
+    font-size: 13px;
+}
+
+.course-block .info b {
+    margin-right: 10px;
+}
+
+.course-block .info a {
+    text-decoration: underline;
+    margin-right: 5px;
+}
+
+.course-block .description {
+    color: #999;
+    font-size: 13px;
+}
+
+.related-lecture-block:before,
+.related-lecture-block:after {
+    content: " ";
+    display: table;
+}
+
+.related-lecture-block:after {
+    clear: both;
+}
+
+.related-lecture-block img {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-right: 10px;
+}
+
+.related-lecture-block .lecture-name,
+.related-lecture-block .description {
+    display: block;
+}
+
+.related-lecture-block .lecture-name {
+    font-size: 18px;
+}
+
+.related-lecture-block .description {
+    color: #999;
+    font-size: 13px;
+}

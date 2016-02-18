@@ -9,17 +9,25 @@
 
     function config($routeProvider){
         $routeProvider
-            .when('/teachers/:teacher_id/profile', {
-                templateUrl: 'view/teacher/profile.html',
-                controller: 'TeacherViewController'
+            .when('/teacher', {
+                templateUrl: 'views/teacher/index.html',
+                controller: 'TeacherIndexController'
             })
-            .when('/teachers/:teacher_id/edit', {
-                templateUrl: 'view/teacher/edit_teacher.html',
-                controller: 'TeacherEditController'
+            .when('/teacher/create', {
+                templateUrl: 'views/teacher/createEdit.html',
+                controller: 'TeacherStoreController'
             })
-            .when('/addteacher', {
-                templateUrl: 'view/teacher/edit_teacher.html',
-                controller: 'TeacherEditController'
+            .when('/teacher/:teacher_id', {
+                templateUrl: 'views/teacher/show.html',
+                controller: 'TeacherShowController'
+            })
+            .when('/teacher/:teacher_id/edit', {
+                templateUrl: 'views/teacher/createEdit.html',
+                controller: 'TeacherUpdateController'
+            })
+            .when('/teacher/:teacher_id/home', {
+                templateUrl: 'views/teacher/home.html',
+                controller: 'TeacherHomeController'
             });
     }
 })();
