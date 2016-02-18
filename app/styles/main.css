@@ -1,3 +1,8 @@
+.login-box, .register-box{
+    margin: 0 auto;
+    padding: 7% 0;
+}
+
 .table tbody > tr > td {
     vertical-align: middle;
 }
