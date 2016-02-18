@@ -1,26 +1,26 @@
 <section calss="container">
     <h1>Register</h1>
     <div class="row">
-    <from id="register" name="registerForm" calss="horm-horizontal">
+    <from calss="horm-horizontal">
         <div class="col-lg-6">
         <div class="form-group">
             <label for="inputEmail">Enter Email</label>
             <div class="input-group">
-                <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Enter Email" required>
+                <input type="email" class="form-control" name="inputEmail" id="inputEmail" ng-model="users.email" placeholder="Enter Email" required>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
             </div>
         </div>
         <div class="form-group">
             <label for="password">Enter Password</label>
             <div class="input-group">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+                <input type="password" class="form-control" id="password" ng-model="users.password" placeholder="Enter Password" required>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
             </div>
         </div>
         <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
             <div class="input-group">
-                <input type="email" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" ng-model="users.confirmPassword" required match-to="users.password" >
                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
             </div>
         </div>
@@ -34,7 +34,7 @@
             </div>
         </div>
             <div class="form-group">
-                <button class="btn btn-primary" ng-click="">Register</button>
+                <button class="btn btn-primary" ng-click="register()">Register</button>
             </div>
         </div>
     </from>

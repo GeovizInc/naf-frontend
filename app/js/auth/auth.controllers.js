@@ -5,32 +5,38 @@
     'use strict';
 
     angular.module('naf.auth')
-        .controller('AuthController', ['$rootScope', '$scope', '$location', "$q", authController])
+        .controller('AuthController', ['$rootScope', '$scope', '$location', "$q", "Auth",  authController])
 
     //AuthController
 
-    function authController($rootScope, $scope, $location, $q) {
+    function authController($rootScope, $scope, $location, $q, Auth) {
         $scope.users = {};
         $scope.userTypes = ['Presenter', 'Attendee'];
         $scope.login = function() {
-            check($scope.users.email, $scope.users.password)
-                .then(function(data){
-                    console.log(data);
-                    $location.path('/register').replace();
-                }, function(err){
-                    $scope.users.error = err;
-                    console.log($scope.users.error);
-                })
-        }
-
-        function check(email, password){
-            var defereed = $q.defer();
-            if(email == '123@gmail.com' && password == '123456'){
-                defereed.resolve('Login');
-            } else{
-                defereed.reject('Invalid Email Or Passwords');
+            var credential = {
+                email: $scope.users.email,
+                password: $scope.users.password
             }
-            return defereed.promise;
-        }
+           Auth.login(credential, function(respone){
+               $location.path('/register').replace();
+           }, function(err){
+               console.log(err);
+               });
+        };
+
+        $scope.register = function() {
+            var credential = {
+                email: $scope.users.email,
+                password: $scope.users.password,
+                userType: $scope.users.type
+            };
+            Auth.register(credential, function(respone){
+                console.log("success: "+JSON.stringify(respone.data));
+            }, function(error){
+                console.log("error: "+JSON.stringify(error));
+            });
+
+        };
+
     }
 })();

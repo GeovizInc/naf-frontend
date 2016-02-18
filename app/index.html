@@ -5,16 +5,20 @@
     <title>NAF</title>
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+    <link href="bower_components/angular-flash-alert/dist/angular-flash.css" rel="stylesheet" type="text/css"/>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script src="bower_components/angular-flash-alert/dist/angular-flash.js"></script>
 
 </head>
 <body>
     <div class="container">
+        <flash-message duration="5000" show-close="true" ></flash-message>
         <div ng-view></div>
     </div>
     <script src="js/app.module.js"></script>
