@@ -13,6 +13,10 @@
                 templateUrl: 'views/presenter/show.html',
                 controller: 'PresenterEditController'
             })
+            .when('/presenter/:presenter_id/profile', {
+                templateUrl: 'views/presenter/profile.html',
+                controller: 'PresenterEditController'
+            })
             .when('/presenter/:presenter_id/course', {
                 templateUrl: 'views/presenter/course.html',
                 controller: 'PresenterEditController'

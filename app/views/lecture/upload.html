@@ -1,25 +1,51 @@
-<h1>Upload the Lecture Video</h1>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Lectures
+        <small></small>
+    </h1>
+</section>
 
-<hr/>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Upload Lecture</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form" ng-submit="uploadVideo(videoFile)">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="videoFile">Avatar</label>
+                            <input class="form-control" type="file" id="videoFile" name="videoFile" ngf-select ng-model="videoFile" required
+                                   placeholder="File">
+                            <p class="help-block">Block-level help text here.</p>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
 
-<form class="form-horizontal" ng-submit="uploadVideo(videoFile)">
-    <div class="form-group">
-        <label for="file" class="col-sm-2 control-label">File</label>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+                <div class="progress progress-sm active" ng-class="videoFile.progress != 100 ? 'active' : ''">
+                    <div class="progress-bar" ng-class="videoFile.progress != 100 ? 'progress-bar-primary progress-bar-striped' : 'progress-bar-success'" role="progressbar" aria-valuenow="{{videoFile.progress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{videoFile.progress}}%">
+                        <span class="sr-only">{{videoFile.progress}}% Complete</span>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
 
-        <div class="col-sm-4">
-            <input class="form-control" type="file" id="file" name="file" ngf-select ng-model="videoFile" required
-                   placeholder="File">
+
         </div>
+        <!--/.col (left) -->
+
     </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-lg btn-success">Upload</button>
-        </div>
-    </div>
-    <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
-             style="width:{{videoFile.progress}}%">
-            <span class="sr-only">70% Complete</span>
-        </div>
-    </div>
-</form>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

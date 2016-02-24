@@ -61,7 +61,7 @@
             login: authMethod.login,
             logout: Logout
 
-        }
+        };
         getInfo();
         return auth;
 

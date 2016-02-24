@@ -15,6 +15,18 @@
 
     //SearchController
     function SearchController($rootScope, $scope, $location, $log, Presenter, Flash) {
-
+        $scope.schools = [{
+            id: 1,
+            name: 'Humber College'
+        }, {
+            id: 2,
+            name: 'Seneca College'
+        }, {
+            id: 3,
+            name: 'Centennial College'
+        }, {
+            id: 4,
+            name: 'George Brown College'
+        }];
     }
 })();

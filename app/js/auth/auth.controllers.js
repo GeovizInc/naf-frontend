@@ -5,7 +5,7 @@
     'use strict';
 
     angular.module('naf.auth')
-        .controller('AuthController', ['$rootScope', '$scope', '$location', "$q", "Auth",  authController])
+        .controller('AuthController', ['$rootScope', '$scope', '$location', "$q", "Auth",  authController]);
 
     //AuthController
 
@@ -16,7 +16,7 @@
             var credential = {
                 email: $scope.users.email,
                 password: $scope.users.password
-            }
+            };
            Auth.login(credential, function(respone){
                $location.path('/register').replace();
            }, function(err){

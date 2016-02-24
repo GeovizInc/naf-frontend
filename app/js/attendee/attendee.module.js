@@ -9,14 +9,11 @@
 
     function config($routeProvider){
         $routeProvider
-            .when('attendee/presenter/:presenter_id', {
-                templateUrl: 'view/attendee/presenterprofile.html',
-                controller: 'PresenterViewController'
-            })
-            .when('search', {
-                templateUrl: 'view/attendee/search.html',
+            .when('/search', {
+                templateUrl: 'views/attendee/search.html',
                 controller: 'SearchController'
-            })
+            });
+
             /*.when('attendee/:attendee_id', {
 
             })*/

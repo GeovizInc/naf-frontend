@@ -1,57 +1,27 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-        <div class="col-md-3">
 
-            <!-- Profile Image -->
-            <div class="box box-primary">
-                <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="images/default-profile-image.png"
-                         alt="User profile picture">
-                    <h3 class="profile-username text-center">University of Cambridge</h3>
+        <div class="col-md-offset-3 col-md-6">
+            <div class="box box-solid">
+                <div class="box-body">
+                    <div class="input-group col-md-3" style="float: left;">
+                        <select2 class="form-control" id="school" ng-model="school" default-option="All Schools" ng-options="school.id as school.name for school in schools track by school.id"></select2>
+                    </div>
 
-                    <!--<ul class="list-group list-group-unbordered">
-                        <li class="list-group-item">
-                            <b>Courses</b><a class="pull-right">22</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Lectures</b><a class="pull-right">1,322</a>
-                        </li>
-                    </ul>-->
+                    <div class="input-group col-md-9" style="float: left;">
+                        <input class="form-control" placeholder="">
 
-                    <hr/>
-
-                    <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-                    <p class="text-muted">Cambridge, United Kingdom</p>
-
-                    <hr>
-
-                    <strong><i class="fa fa-user margin-r-5"></i> Teachers</strong>
-                    <p class="text-muted teacher">
-                        <a href="">Liang Guo</a><a href="">Jiadong Hu</a>
-                    </p>
-
-                    <hr>
-
-                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Introduction</strong>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                        <div class="input-group-btn">
+                            <button type="button" class="btn">Search</button>
+                        </div>
+                    </div>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!-- /.col -->
-        <div class="col-md-9">
-            <div class="box box-default">
-                <div class="box-header">
-                    <h3 class="box-title">Courses</h3>
-                    <!--<div class="box-tools">
-                        <div class="input-group" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control input-sm pull-right"
-                                   placeholder="Search">
-                            <div class="input-group-btn">
-                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>-->
-                </div><!-- /.box-header -->
+
+        <div class="col-md-12">
+            <div class="box box-solid">
                 <div class="box-body">
                     <!-- Post -->
                     <div class="post">
@@ -60,9 +30,9 @@
                             <span class='course-name'>
                                 <a href="#">Java Introduction</a>
                             </span>
-                            <!--<span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>-->
+                            <span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>
                             <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <!--<span class='info'><b>Lecture:</b>5</span>-->
+                            <span class='info'><b>Lecture:</b>5</span>
                             <p class="description">
                                 Lorem ipsum represents a long-held tradition for designers,
                                 typographers and the like. Some people hate it and argue for
@@ -81,9 +51,9 @@
                             <span class='course-name'>
                                 <a href="#">Project Management</a>
                             </span>
-                            <!--<span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>-->
+                            <span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>
                             <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <!--<span class='info'><b>Lecture:</b>5</span>-->
+                            <span class='info'><b>Lecture:</b>5</span>
                             <p class="description">
                                 Lorem ipsum represents a long-held tradition for designers,
                                 typographers and the like. Some people hate it and argue for
@@ -102,9 +72,9 @@
                             <span class='course-name'>
                                 <a href="#">Algorithm Introduction</a>
                             </span>
-                            <!--<span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>-->
+                            <span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>
                             <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <!--<span class='info'><b>Lecture:</b>5</span>-->
+                            <span class='info'><b>Lecture:</b>5</span>
                             <p class="description">
                                 Lorem ipsum represents a long-held tradition for designers,
                                 typographers and the like. Some people hate it and argue for
@@ -118,7 +88,6 @@
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
-                    <a href="#/course" type="button" class="btn btn-success">Manage Courses</a>
                     <ul class="pagination pagination-sm no-margin pull-right">
                         <li><a href="#">&laquo;</a></li>
                         <li><a href="#">1</a></li>

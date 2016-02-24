@@ -21,7 +21,7 @@
                 templateUrl: 'views/lecture/createEdit.html',
                 controller: 'LectureController'
             })
-            .when('/lecture/upload', {
+            .when('/lecture/:lecture_id/upload', {
                 templateUrl: 'views/lecture/upload.html',
                 controller: 'UploadLectureController'
             });
