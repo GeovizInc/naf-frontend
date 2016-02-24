@@ -5,10 +5,8 @@
     'use strict';
 
     angular.module('naf.auth')
-        .factory('AuthInterceptor', ['$location', '$q', 'store', 'jwtHelper', 'Flash', authInterceptor])
-        .factory('Auth', ['$rootScope', '$resource', 'Config', 'store', authFactory]);
-
-
+        .factory('Auth', ['$rootScope', '$resource', 'Config', 'store', authFactory])
+        .factory('AuthInterceptor', ['$location', '$q', 'store', 'jwtHelper', 'Flash', authInterceptor]);
     //Auth service
 
     function authFactory($rootScope,$resource,Config,store) {
@@ -44,7 +42,7 @@
             }
         });
 
-        function Logout(){
+        function logout() {
             store.remove('token');
             store.remove('user');
             auth._token = null;
@@ -59,7 +57,7 @@
             loggedIn: false,
             register: authMethod.register,
             login: authMethod.login,
-            logout: Logout
+            logout: logout
 
         };
         getInfo();
@@ -101,7 +99,7 @@
             responseError : function(rejection) {
                 if(rejection.status === 401){
                    // Flash.create('danger', 'Error Please Login!');
-                    console.log(rejection.data.error);
+                    console.log(rejection.data);
                     Auth.logout();
                     $location.path('/login').replace();
                 }

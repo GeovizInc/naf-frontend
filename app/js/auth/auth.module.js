@@ -13,7 +13,7 @@
                 templateUrl: 'views/auth/register.html',
                 controller: 'AuthController'
             })
-            .when('/', {
+            .when('/login', {
                 templateUrl: 'views/auth/login.html',
                 controller: 'AuthController'
             })
