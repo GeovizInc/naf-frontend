@@ -18,6 +18,11 @@
                 <input type="password" class="form-control" id="confirmPassword" placeholder="Retype password" ng-model="users.confirmPassword" required="required" match-to="users.password">
                 <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
             </div>
+            <div class="form-group has-feedback">
+                <select ng-model="users.type" ng-options="type for type in userTypes ">
+                    <option value="">Select User Type</option>
+                </select>
+            </div>
             <div class="row">
                 <div class="col-xs-12">
                     <button type="button" class="btn btn-primary btn-block btn-flat" ng-click="register()">Register</button>
