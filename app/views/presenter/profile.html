@@ -13,26 +13,26 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="name">School Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="School Name">
+                            <input type="text" class="form-control" id="name" placeholder="School Name" ng-model="user.name">
                         </div>
                         <div class="form-group">
                             <label for="location">Location</label>
-                            <input type="text" class="form-control" id="location" placeholder="Location">
+                            <input type="text" class="form-control" id="location" placeholder="Location" ng-model="user.location">
                         </div>
                         <div class="form-group">
                             <label for="picture">Picture</label>
-                            <input type="file" id="picture">
+                            <input type="file" id="picture" ng-model="user.imageLink">
                             <p class="help-block">Block-level help text here.</p>
                         </div>
                         <div class="form-group">
                             <label for="intro">Introduction</label>
-                            <textarea class="form-control" rows="5" id="intro"></textarea>
+                            <textarea class="form-control" rows="5" id="intro" ng-model="user.introduction"></textarea>
                         </div>
                     </div>
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" ng-click="update()">Submit</button>
                     </div>
                 </form>
             </div>

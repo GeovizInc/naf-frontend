@@ -11,7 +11,7 @@
 
     function presenterFactory($resource, Config) {
         return $resource(Config.api + '/presenter/:presenter_id', {}, {
-           /* // get presenter profile
+
             get: {
                 method: 'GET',
                 params: {presenter_id: '@presenter_id'}
