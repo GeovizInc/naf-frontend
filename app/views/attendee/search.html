@@ -2,18 +2,21 @@
 <section class="content">
     <div class="row">
 
-        <div class="col-md-offset-3 col-md-6">
+        <div class="col-md-offset-2 col-md-8">
             <div class="box box-solid">
                 <div class="box-body">
-                    <div class="input-group col-md-3" style="float: left;">
-                        <select2 class="form-control" id="school" ng-model="school" default-option="All Schools" ng-options="school.id as school.name for school in schools track by school.id"></select2>
+                    <div class="col-md-4">
+                        <div class="form-group margin-bottom-none">
+                            <select2 class="form-control select2" id="school" ng-model="school" default-option="All Schools" ng-options="school.id as school.name for school in schools track by school.id"></select2>
+                        </div>
                     </div>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input class="form-control" placeholder="Course Name">
 
-                    <div class="input-group col-md-9" style="float: left;">
-                        <input class="form-control" placeholder="">
-
-                        <div class="input-group-btn">
-                            <button type="button" class="btn">Search</button>
+                            <div class="input-group-btn">
+                                <button type="button" class="btn">Search</button>
+                            </div>
                         </div>
                     </div>
                 </div><!-- /.box-body -->
@@ -28,11 +31,11 @@
                         <div class="course-block">
                             <img class="img-bordered" src="http://placehold.it/200x150">
                             <span class='course-name'>
-                                <a href="#">Java Introduction</a>
+                                <a href="#/course/1">Java Introduction</a>
                             </span>
-                            <span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>
+                            <span class='info'><b>School:</b><a href="#/presenter/1">University of Cambridge</a></span>
+                            <span class='info'><b>Teacher:</b><a href="#/teacher/1">Liang Guo</a><a href="#/teacher/1">Jiadong Hu</a></span>
                             <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <span class='info'><b>Lecture:</b>5</span>
                             <p class="description">
                                 Lorem ipsum represents a long-held tradition for designers,
                                 typographers and the like. Some people hate it and argue for
@@ -49,11 +52,11 @@
                         <div class="course-block">
                             <img class="img-bordered" src="http://placehold.it/200x150">
                             <span class='course-name'>
-                                <a href="#">Project Management</a>
+                                <a href="#/course/1">Project Management</a>
                             </span>
-                            <span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>
+                            <span class='info'><b>School:</b><a href="#/presenter/1">University of Cambridge</a></span>
+                            <span class='info'><b>Teacher:</b><a href="#/teacher/1">Liang Guo</a><a href="#/teacher/1">Jiadong Hu</a></span>
                             <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <span class='info'><b>Lecture:</b>5</span>
                             <p class="description">
                                 Lorem ipsum represents a long-held tradition for designers,
                                 typographers and the like. Some people hate it and argue for
@@ -70,11 +73,11 @@
                         <div class="course-block">
                             <img class="img-bordered" src="http://placehold.it/200x150">
                             <span class='course-name'>
-                                <a href="#">Algorithm Introduction</a>
+                                <a href="#/course/1">Algorithm Introduction</a>
                             </span>
-                            <span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>
+                            <span class='info'><b>School:</b><a href="#/presenter/1">University of Cambridge</a></span>
+                            <span class='info'><b>Teacher:</b><a href="#/teacher/1">Liang Guo</a><a href="#/teacher/1">Jiadong Hu</a></span>
                             <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <span class='info'><b>Lecture:</b>5</span>
                             <p class="description">
                                 Lorem ipsum represents a long-held tradition for designers,
                                 typographers and the like. Some people hate it and argue for

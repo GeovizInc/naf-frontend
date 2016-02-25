@@ -21,7 +21,7 @@
     <link href="styles/main.css" rel="stylesheet" type="text/css"/>
 
 </head>
-<body class="hold-transition skin-black layout-boxed sidebar-collapse sidebar-mini">
+<body class="hold-transition skin-black layout-boxed" ng-class="user.userType == 'presenter' ? 'sidebar-mini sidebar-collapse' : 'sidebar-collapse'" ng-controller="MainController" >
 <flash-message duration="5000" show-close="true"></flash-message>
 <div class="wrapper">
     <header class="main-header">
@@ -35,11 +35,11 @@
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
             <!-- Sidebar toggle button-->
-            <a href="" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <a ng-if="user.userType == 'presenter'" href="" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                 <span class="sr-only">Toggle navigation</span>
             </a>
 
-            <div class="navbar-custom-menu" ng-controller="MainController">
+            <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <li class="dropdown messages-menu">
                         <a href="">Home</a>
@@ -94,7 +94,19 @@
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
-
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="#/teacher">
+                        <i class="fa fa-user"></i> <span>Teachers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#/course">
+                        <i class="fa fa-book"></i> <span>Courses</span>
+                    </a>
+                </li>
+            </ul>
         </section>
         <!-- /.sidebar -->
     </aside>
@@ -107,10 +119,10 @@
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-            Anything you want
+
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2015 <a href="">Company</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2016 <a href="">NAF-Education</a>.</strong> All rights reserved.
     </footer>
 </div>
 
