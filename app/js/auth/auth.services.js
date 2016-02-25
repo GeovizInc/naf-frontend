@@ -6,7 +6,7 @@
 
     angular.module('naf.auth')
         .factory('Auth', ['$rootScope', '$resource', 'Config', 'store', authFactory])
-        .factory('AuthInterceptor', ['$location', '$q', 'store', 'jwtHelper', 'Flash', authInterceptor]);
+        .factory('AuthInterceptor', ['$location', '$q', '$injector', 'store', 'jwtHelper', authInterceptor]);
     //Auth service
 
     function authFactory($rootScope,$resource,Config,store) {
@@ -66,9 +66,10 @@
     }
 
     //AuthInterceptor
-    function authInterceptor($location, $q, store, jwtHelper, Auth, Flash) {
+    function authInterceptor($location, $q, $injector, store, jwtHelper) {
         var interceptor = {
             request : function(request) {
+                var Auth = $injector.get('Auth');
                 var token = Auth._token;
                 if (token) {
                     request.headers.Authorization = token;
@@ -82,6 +83,7 @@
             },
 
             response : function(response) {
+                var Auth = $injector.get('Auth');
                 var oldToken = store.get('token'),
                     newToken = response.headers('Authorization');
                 if(newToken && !jwtHelper.isTokenExpired(newToken) && (newToken !== oldToken)) {
@@ -97,6 +99,7 @@
             },
 
             responseError : function(rejection) {
+                var Auth = $injector.get('Auth');
                 if(rejection.status === 401){
                    // Flash.create('danger', 'Error Please Login!');
                     console.log(rejection.data);
