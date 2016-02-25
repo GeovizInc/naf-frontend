@@ -22,24 +22,24 @@
         $rootScope.$on('userLogin', function(event, user) {
             $scope.loggedIn = Auth.loggedIn;
             $scope.user = Auth._user;
-        })
+        });
 
         $rootScope.$on('userRegister', function(event, user) {
             $scope.loggedIn = Auth.loggedIn;
             $scope.user = Auth._user;
-        })
+        });
 
         $rootScope.$on('userLogout', function(event, user) {
             $scope.loggedIn = null;
             $scope.user = null;
-        })
+        });
 
         $scope.logout = function() {
             Auth.logout();
             $scope.loggedIn = Auth.loggedIn;
             $scope.user = Auth._user;
             $location.path('/login');
-        }
+        };
 
         function getCurrentUser() {
             $scope.loggedIn = Auth.loggedIn;

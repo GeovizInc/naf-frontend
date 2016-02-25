@@ -84,7 +84,7 @@
         return {
             restrict: 'E',
             replace: true,
-            template: '<select><option value="">...</option></select>',
+            template: '<select style="width: 100%;"><option value="">...</option></select>',
             link: function ($scope, element, attr) {
                 var attributes, option;
                 attributes = element.prop('attributes');
