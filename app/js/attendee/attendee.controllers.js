@@ -5,11 +5,28 @@
     'use strict';
 
     angular.module('naf.course')
-        .controller('PresenterViewController', ['$rootScope', '$scope', '$location', '$log', 'Presenter', 'Flash', presenterViewController])
+        .controller('PresenterViewController', ['$rootScope', '$scope', '$location', '$log', '$routeParams', 'Presenter', 'Auth', 'Flash', presenterViewController])
         .controller('SearchController', ['$rootScope', '$scope', '$location', '$log', 'Presenter', 'Flash', SearchController]);
 
     //presenterViewController
-    function presenterViewController($rootScope, $scope, $location, $log, Presenter, Flash) {
+    function presenterViewController($rootScope, $scope, $location, $log, $routeParams, Presenter, Auth, Flash) {
+        $scope.user = null;
+        $scope.presenter = null;
+        if(Auth._user) {
+            $scope.user = Auth._user;
+        }
+        console.log($routeParams.presenter_id);
+        getPresenterInfo();
+        function getPresenterInfo() {
+            Presenter.get({presenter_id: $routeParams.presenter_id},
+                function(response) {
+                    console.log(response);
+                    $scope.presenter = response;
+                }, function(error) {
+                    Flash.create('danger','There is no such Presenter !');
+                    $location.path('/search');
+                });
+        }
 
     }
 

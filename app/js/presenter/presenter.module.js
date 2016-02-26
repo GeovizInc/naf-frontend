@@ -11,7 +11,7 @@
         $routeProvider
             .when('/presenter/:presenter_id', {
                 templateUrl: 'views/presenter/show.html',
-                controller: 'PresenterEditController'
+                controller: 'PresenterViewController'
             })
             .when('/presenter/:presenter_id/profile', {
                 templateUrl: 'views/presenter/profile.html',
