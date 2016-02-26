@@ -16,6 +16,11 @@
                 url: Config.api + '/course',
                 method: 'PUT'
             },
+            //delete course
+            remove: {
+                url: Config.api + '/course',
+                method: 'DELETE',
+            },
             // get lecture list of the course
             getLecture: {
                 url: Config.api + '/course/:course_id/lectures',

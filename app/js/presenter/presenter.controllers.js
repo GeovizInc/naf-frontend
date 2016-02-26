@@ -18,7 +18,14 @@
             Flash.create('danger', 'Only presenter can edit their own profile !');
             $location.path('/presenter/'+$routeParams.presenter_id);
         }
-        $scope.user = Auth._user;
+        Presenter.get({presenter_id: Auth._user._id},
+            function(response) {
+                console.log(response);
+                $scope.user = response;
+            }, function(error) {
+                Flash.create('danger','There is no such Presenter !');
+                $location.path('/search');
+            });
         //update userinfo
         $scope.update = function() {
             var presenter = {
@@ -40,5 +47,7 @@
         //change passwords
 
 
+
+        //list course
     }
 })();

@@ -56,67 +56,23 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <!-- Post -->
-                    <div class="post">
+                    <div class="post" ng-repeat="course in courses">
                         <div class="course-block">
                             <img class="img-bordered" src="http://placehold.it/200x150">
                             <span class='course-name'>
-                                <a href="#">Java Introduction</a>
+                                <a href="#">{{course.name}}</a>
                             </span>
                             <!--<span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>-->
                             <span class='info'><b>Updated at:</b>3 days ago</span>
                             <!--<span class='info'><b>Lecture:</b>5</span>-->
                             <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
+                                {{course.description}}
                             </p>
                         </div><!-- /.user-block -->
 
                     </div><!-- /.post -->
 
-                    <!-- Post -->
-                    <div class="post">
-                        <div class="course-block">
-                            <img class="img-bordered" src="http://placehold.it/200x150">
-                            <span class='course-name'>
-                                <a href="#">Project Management</a>
-                            </span>
-                            <!--<span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>-->
-                            <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <!--<span class='info'><b>Lecture:</b>5</span>-->
-                            <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
-                            </p>
-                        </div><!-- /.user-block -->
 
-                    </div><!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post">
-                        <div class="course-block">
-                            <img class="img-bordered" src="http://placehold.it/200x150">
-                            <span class='course-name'>
-                                <a href="#">Algorithm Introduction</a>
-                            </span>
-                            <!--<span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>-->
-                            <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <!--<span class='info'><b>Lecture:</b>5</span>-->
-                            <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
-                            </p>
-                        </div><!-- /.user-block -->
-
-                    </div><!-- /.post -->
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
