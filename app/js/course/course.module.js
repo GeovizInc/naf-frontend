@@ -11,13 +11,13 @@
         $routeProvider
             .when('/course', {
                 templateUrl: 'views/course/index.html',
-                controller: 'CourseStoreController'
+                controller: 'CourseListController'
             })
             .when('/course/create', {
                 templateUrl: 'views/course/createEdit.html',
                 controller: 'CourseStoreController'
             })
-            .when('/course/:course_id', {
+            .when('/course/:course_id/view', {
                 templateUrl: 'views/course/show.html',
                 controller: 'CourseViewController'
             })

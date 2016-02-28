@@ -41,6 +41,12 @@
             $location.path('/login');
         };
 
+        $scope.viewProfile = function() {
+            if($scope.user.userType == 'presenter') {
+                $location.path('/presenter/'+$scope.user._id);
+            }
+        };
+
         function getCurrentUser() {
             $scope.loggedIn = Auth.loggedIn;
             $scope.user = Auth._user;

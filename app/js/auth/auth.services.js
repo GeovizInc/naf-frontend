@@ -39,6 +39,17 @@
                 url: Config.api + '/auth/login',
                 method: 'POST',
                 interceptor: authInterceptor
+            },
+
+            changePassword: {
+                url: Config.api + '/auth',
+                method: 'PUT',
+            },
+
+            checkEmail: {
+                url: Config.api + '/email/:email',
+                Method: 'GET',
+                params: {email: '@email'}
             }
         });
 
@@ -57,8 +68,9 @@
             loggedIn: false,
             register: authMethod.register,
             login: authMethod.login,
+            changePassword: authMethod.changePassword,
+            checkEmail: authMethod.checkEmail,
             logout: logout
-
         };
         getInfo();
         return auth;

@@ -23,7 +23,7 @@
             })
             .when('/presenter/:presenter_id', {
                 templateUrl: 'views/presenter/show.html',
-                controller: 'PresenterEditController'
+                controller: 'PresenterViewController'
             });
     }
 })();

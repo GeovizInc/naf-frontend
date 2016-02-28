@@ -31,27 +31,14 @@
                             <th>Updated at</th>
                             <th width="1%"></th>
                         </tr>
-                        <tr>
+                        <tr ng-repeat="course in courses">
                             <td><a href="#/course/1"><img src="http://placehold.it/100x75"/></a></td>
-                            <td class="course-name"><a href="#/course/1">Java Introduction</a></td>
+                            <td class="course-name"><a href="#/course/1">{{course.name}}</a></td>
                             <!--<td class="teacher"><a href="">Liang Guo</a> <a href="">Jiadong Hu</a></td>-->
                             <td>3 days ago</td>
-                            <td><a href="#/course/create" type="button" class="btn btn-default btn-xs">Edit</a></td>
+                            <td><a href="#/course/{{course._id}}/edit" type="button" class="btn btn-default btn-xs">Edit</a></td>
                         </tr>
-                        <tr>
-                            <td><a href="#/course/1"><img src="http://placehold.it/100x75"/></a></td>
-                            <td class="course-name"><a href="#/course/1">Project Management</a></td>
-                            <!--<td class="teacher"><a href="">Liang Guo</a> <a href="">Jiadong Hu</a></td>-->
-                            <td>3 days ago</td>
-                            <td><a href="#/course/create" type="button" class="btn btn-default btn-xs">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#/course/1"><img src="http://placehold.it/100x75"/></a></td>
-                            <td class="course-name"><a href="#/course/1">Algorithm Introduction</a></td>
-                            <!--<td class="teacher"><a href="">Liang Guo</a> <a href="">Jiadong Hu</a></td>-->
-                            <td>3 days ago</td>
-                            <td><a href="#/course/create" type="button" class="btn btn-default btn-xs">Edit</a></td>
-                        </tr>
+
                     </table>
                 </div><!-- /.box-body -->
 

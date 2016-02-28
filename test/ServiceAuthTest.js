@@ -6,7 +6,7 @@
 describe('service', function() {
 
     // load modules
-    beforeEach(module('naf.auth'));
+    beforeEach(module('naf.course'));
 
     // Test service availability
     it('check the existence of Phone factory', inject(function(Auth) {
