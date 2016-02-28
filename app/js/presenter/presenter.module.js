@@ -9,20 +9,20 @@
 
     function config($routeProvider){
         $routeProvider
-            .when('/presenter/:presenter_id', {
-                templateUrl: 'views/presenter/show.html',
-                controller: 'PresenterEditController'
-            })
-            .when('/presenter/:presenter_id/profile', {
+            .when('/presenter/profile', {
                 templateUrl: 'views/presenter/profile.html',
                 controller: 'PresenterEditController'
             })
-            .when('/presenter/:presenter_id/course', {
+            .when('/presenter/teacher', {
+                templateUrl: 'views/presenter/teacher.html',
+                controller: 'PresenterEditController'
+            })
+            .when('/presenter/course', {
                 templateUrl: 'views/presenter/course.html',
                 controller: 'PresenterEditController'
             })
-            .when('/presenter/:presenter_id/teacher', {
-                templateUrl: 'views/presenter/teacher.html',
+            .when('/presenter/:presenter_id', {
+                templateUrl: 'views/presenter/show.html',
                 controller: 'PresenterEditController'
             });
     }
