@@ -5,11 +5,11 @@
     'use strict';
 
     angular.module('naf.auth')
-        .controller('AuthController', ['$rootScope', '$scope', '$location', '$q', 'Auth',  authController]);
+        .controller('AuthController', ['$rootScope', '$scope', '$location', '$q', 'Auth', 'Flash',  authController]);
 
     //AuthController
 
-    function authController($rootScope, $scope, $location, $q, Auth) {
+    function authController($rootScope, $scope, $location, $q, Auth, Flash) {
         $scope.users = {};
         $scope.userTypes = ['presenter', 'attendee'];
         $scope.login = function() {
@@ -21,6 +21,7 @@
                $rootScope.$broadcast('userLogin', respone.data);
                checkUserType(respone.data);
            }, function(err){
+               Flash.create('danger', 'Please check your email or passwords');
                console.log(err);
                });
         };
@@ -54,6 +55,7 @@
                     break;
                 default:
                     Auth.logout();
+                    Flash.create('danger', 'Auth failed, please login again');
                     $location.path('/login');
             }
 

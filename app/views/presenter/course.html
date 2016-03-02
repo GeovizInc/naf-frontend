@@ -32,8 +32,8 @@
                             <th width="1%"></th>
                         </tr>
                         <tr ng-repeat="course in courses">
-                            <td><a href="#/course/1"><img src="http://placehold.it/100x75"/></a></td>
-                            <td class="course-name"><a href="#/course/1">{{course.name}}</a></td>
+                            <td><a href="#/course/{{course._id}}/view"><img src="http://placehold.it/100x75"/></a></td>
+                            <td class="course-name"><a href="#/course/{{course._id}}/view">{{course.name}}</a></td>
                             <!--<td class="teacher"><a href="">Liang Guo</a> <a href="">Jiadong Hu</a></td>-->
                             <td>3 days ago</td>
                             <td><a href="#/course/{{course._id}}/edit" type="button" class="btn btn-default btn-xs">Edit</a></td>

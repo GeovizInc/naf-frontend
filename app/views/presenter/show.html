@@ -60,7 +60,7 @@
                         <div class="course-block">
                             <img class="img-bordered" src="http://placehold.it/200x150">
                             <span class='course-name'>
-                                <a href="#">{{course.name}}</a>
+                                <a href="#/course/{{course._id}}/view">{{course.name}}</a>
                             </span>
                             <!--<span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>-->
                             <span class='info'><b>Updated at:</b>3 days ago</span>
@@ -76,11 +76,7 @@
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
-<<<<<<< HEAD
-                    <a href="#/presenter/course" type="button" class="btn btn-success">Manage Courses</a>
-=======
                     <a href="#/course" type="button" class="btn btn-success" ng-if="user._id == presenter._id">Manage Courses</a>
->>>>>>> 28811180b088acff06d9a09c845b09f5886d7030
                     <ul class="pagination pagination-sm no-margin pull-right">
                         <li><a href="#">&laquo;</a></li>
                         <li><a href="#">1</a></li>

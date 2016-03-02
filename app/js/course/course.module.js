@@ -10,7 +10,7 @@
     function config($routeProvider){
         $routeProvider
             .when('/course', {
-                templateUrl: 'views/course/index.html',
+                templateUrl: 'views/presenter/course.html',
                 controller: 'CourseListController'
             })
             .when('/course/create', {

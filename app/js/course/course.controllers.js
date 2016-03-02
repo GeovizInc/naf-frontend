@@ -7,7 +7,7 @@
     angular.module('naf.course')
         .controller('CourseStoreController', ['$rootScope', '$scope', '$location', 'Course', 'Auth', 'Flash', courseStoreController])
         .controller('CourseListController', ['$rootScope', '$scope', '$location', 'Presenter', 'Auth', 'Flash', courseListController])
-        .controller('CourseViewController', ['$rootScope', '$scope', '$location', 'Course', 'Flash', courseViewController])
+        .controller('CourseViewController', ['$rootScope', '$scope', '$location', '$routeParams', 'Course', 'Flash', 'Auth', courseViewController])
         .controller('CourseEditController', ['$rootScope', '$scope', '$location', '$routeParams', 'Course', 'Flash', courseEditController]);
 
     //CourseStoreController
@@ -58,7 +58,19 @@
     }
 
     //CourseViewController
-    function courseViewController($rootScope, $scope, $location, Course, Flash) {
+    function courseViewController($rootScope, $scope, $location, $routeParams, Course, Flash, Auth) {
+        $scope.course = null;
+        $scope.isPresenter = null;
+        Course.get({course_id: $routeParams.course_id}, function(response) {
+            $scope.course = response;
+            if(Auth._user && Auth._user._id == $scope.course.presenter._id) {
+                $scope.isPresenter = true;
+            }
+        }, function(error) {
+            Flash.create('danger', 'Can not get this course!');
+            $location.path('/search');
+        });
+
 
     }
 

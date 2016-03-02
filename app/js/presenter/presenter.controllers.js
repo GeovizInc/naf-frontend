@@ -14,9 +14,6 @@
         //check current user
         if(!Auth._user) {
             $location.path('/login');
-        } else if( Auth._user._id != $routeParams.presenter_id) {
-            Flash.create('danger', 'Only presenter can edit their own profile !');
-            $location.path('/presenter/'+$routeParams.presenter_id);
         }
         Presenter.get({presenter_id: Auth._user._id},
             function(response) {
@@ -37,7 +34,7 @@
             }
             Presenter.update(presenter, function(response){
                 Flash.create('success',"Update Successful");
-                $location.path('/presenter/'+$routeParams.presenter_id);
+                $location.path('/presenter/'+$scope.user._id);
             }, function(error){
                 Flash.create('danger',"Can not updata your profile due to"+error.data);
                 console.log(error);
