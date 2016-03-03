@@ -5,8 +5,37 @@
     'use strict';
 
     angular.module('naf.lecture')
+        .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Auth', 'Flash', lectureStoreController])
         .controller('LectureController', ['$rootScope', '$scope', '$location', '$log', 'Course', 'Lecture', LectureController])
         .controller('UploadLectureController', ['$scope', '$timeout', 'Upload', 'Vimeo', uploadLecture]);
+
+    //LectureController
+    function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Auth, Flash) {
+        $scope.user = null ;
+        if(Auth._user) {
+            $scope.user = Auth._user;
+        } else {
+            Auth.logout();
+            $location.path('/login');
+        }
+        Presenter.getTeachers({presenter_id: $scope.user._id}, function(response) {
+            console.log(response);
+            $scope.teachers = response;
+        }, function(error) {
+            console.log(error);
+        });
+        $scope.lecture = {};
+        $scope.lecture.course = $routeParams.course_id;
+        $scope.createLecture = function() {
+            Lecture.save($scope.lecture, function(response) {
+                console.log(response);
+                Flash.create('success', 'Lecture has been created!');
+                $location.path('/course/'+ $scope.lecture.course_id +'/view');
+            }, function(error) {
+                console.log("error: "+JSON.stringify(error));
+            });
+        }
+    }
 
     //LectureController
     function LectureController($rootScope, $scope, $location, $log, Course, Lecture) {

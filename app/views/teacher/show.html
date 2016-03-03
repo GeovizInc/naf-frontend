@@ -8,7 +8,7 @@
                 <div class="box-body box-profile">
                     <img class="profile-user-img img-responsive img-circle" src="images/default-profile-image.png"
                          alt="User profile picture">
-                    <h3 class="profile-username text-center">Liang Guo</h3>
+                    <h3 class="profile-username text-center">{{teacher.name}}</h3>
 
                     <!--<ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
@@ -20,18 +20,18 @@
 
                     <strong><i class="fa fa-book margin-r-5"></i> School</strong>
                     <p class="text-muted">
-                        <a href="#/presenter/1">University of Cambridge</a>
+                        <a href="#/presenter/{{teacher.presenter._id}}">{{teacher.presenter.name}}</a>
                     </p>
 
                     <hr>
 
                     <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-                    <p class="text-muted">Cambridge, United Kingdom</p>
+                    <p class="text-muted">{{teacher.presenter.location}}</p>
 
                     <hr>
 
                     <strong><i class="fa fa-file-text-o margin-r-5"></i> Introduction</strong>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                    <p>{{teacher.description}}</p>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!-- /.col -->
