@@ -53,7 +53,7 @@
                     $location.path('/presenter/'+User._id);
                     break;
                 case 'teacher':
-                    $location.path('/teacher/'+User._id);
+                    $location.path('/teacher/'+User._id+'/home');
                     break;
                 case 'attendee':
                     $location.path('/search');
