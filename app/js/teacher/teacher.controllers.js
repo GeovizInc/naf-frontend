@@ -7,7 +7,7 @@
     angular.module('naf.teacher')
         .controller('TeacherStoreController', ['$rootScope', '$scope', '$location', 'Teacher', 'Auth', 'Flash', teacherStoreController])
         .controller('TeacherIndexController', ['$rootScope', '$scope', '$location', 'Presenter', 'Auth', 'Flash', teacherIndexController])
-        .controller('TeacherViewController', ['$rootScope', '$scope', '$location', 'Teacher', 'Auth',  'Flash', teacherViewController])
+        .controller('TeacherShowController', ['$rootScope', '$scope', '$location', 'Teacher', 'Auth',  'Flash', teacherShowController])
         .controller('TeacherEditController', ['$rootScope', '$scope', '$location', 'Teacher', 'Auth',  'Flash', teacherEditController]);
 
     //TeacherStoreController
@@ -62,13 +62,11 @@
         }, function(error) {
             console.log(error);
         });
-
-
     }
 
 
     //TeacherViewController
-    function teacherViewController($rootScope, $scope, $location, $log, Teacher, Flash) {
+    function teacherShowController($rootScope, $scope, $location, $log, Teacher, Flash) {
 
     }
 
