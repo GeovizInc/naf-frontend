@@ -24,20 +24,19 @@
             var credential = {
                 email: $scope.teacher.email,
                 password: $scope.teacher.password,
-                userType: 'teacher',
+                userType: 'teacher'
             };
             Teacher.save(credential, function(response){
                 console.log(response);
                 $scope.teacher._id = response._id;
                 Teacher.update($scope.teacher, function(response) {
-                    console.log(response);
+                    //console.log(response);
                     Flash.create('success', 'Teacher has been created!');
                     $location.path('/teacher');
                 }, function(error) {
                     console.log(error);
                 });
-
-            }, function(error){
+            }, function(error) {
                 console.log("error: "+JSON.stringify(error));
             });
         };
@@ -55,7 +54,9 @@
             $location.path('/Search');
         }
         $scope.user = Auth._user;
+        console.log($scope.user);
         Presenter.getTeachers({presenter_id: $scope.user._id}, function(response) {
+            console.log(response);
             $scope.teachers = response;
         }, function(error) {
             console.log(error);
