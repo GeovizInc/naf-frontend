@@ -41,6 +41,11 @@
                 method: 'GET',
                 params: {presenter_id: '@presenter_id'},
                 isArray: true
+            },
+            list: {
+                url: Config.api + '/presenter',
+                method: 'GET',
+                isArray: true
             }
         });
     }
