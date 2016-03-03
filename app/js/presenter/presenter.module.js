@@ -13,14 +13,6 @@
                 templateUrl: 'views/presenter/profile.html',
                 controller: 'PresenterEditController'
             })
-            .when('/presenter/teacher', {
-                templateUrl: 'views/presenter/teacher.html',
-                controller: 'PresenterEditController'
-            })
-            .when('/presenter/course', {
-                templateUrl: 'views/presenter/course.html',
-                controller: 'PresenterEditController'
-            })
             .when('/presenter/:presenter_id', {
                 templateUrl: 'views/presenter/show.html',
                 controller: 'PresenterViewController'

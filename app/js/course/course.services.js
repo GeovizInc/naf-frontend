@@ -19,7 +19,7 @@
             //delete course
             remove: {
                 url: Config.api + '/course',
-                method: 'DELETE',
+                method: 'DELETE'
             },
             // get lecture list of the course
             getLecture: {
