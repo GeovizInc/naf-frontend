@@ -7,15 +7,15 @@
                 <div class="box-body">
                     <div class="col-md-4">
                         <div class="form-group margin-bottom-none">
-                            <select2 class="form-control select2" id="school" ng-model="school" default-option="All Schools" ng-options="school.id as school.name for school in schools track by school.id"></select2>
+                            <select2 class="form-control select2" id="school" ng-model="school" default-option="All Schools" ng-options="school._id as school.name for school in schools track by school._id"></select2>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="input-group">
-                            <input class="form-control" placeholder="Course Name">
+                            <input class="form-control" placeholder="Course Name" ng-model="courseName">
 
                             <div class="input-group-btn">
-                                <button type="button" class="btn">Search</button>
+                                <button type="button" class="btn" ng-click="search()">Search</button>
                             </div>
                         </div>
                     </div>
@@ -27,67 +27,25 @@
             <div class="box box-solid">
                 <div class="box-body">
                     <!-- Post -->
-                    <div class="post">
+                    <div class="post" ng-repeat="course in courses">
                         <div class="course-block">
-                            <img class="img-bordered" src="http://placehold.it/200x150">
+                            <img class="img-bordered" src="{{course.imageLink || 'http://placehold.it/200x150'}} ">
                             <span class='course-name'>
-                                <a href="#/course/1">Java Introduction</a>
+                                <a href="#/course/1">{{course.name}}</a>
                             </span>
-                            <span class='info'><b>School:</b><a href="#/presenter/1">University of Cambridge</a></span>
-                            <span class='info'><b>Teacher:</b><a href="#/teacher/1">Liang Guo</a><a href="#/teacher/1">Jiadong Hu</a></span>
-                            <span class='info'><b>Updated at:</b>3 days ago</span>
+                            <span class='info'><b>School:</b><a href="#/presenter/{{course.presenter._id}}">{{course.presenter.name || 'School Name'}}</a></span>
+                            <!--<span class='info'><b>Teacher:</b><a href="#/teacher/1">Liang Guo</a><a href="#/teacher/1">Jiadong Hu</a></span>-->
+                            <span class='info'><b>Updated at:</b>{{course.updatedAt}}</span>
                             <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
+                                {{course.description || 'Course description'}}
                             </p>
                         </div><!-- /.user-block -->
 
                     </div><!-- /.post -->
 
-                    <!-- Post -->
-                    <div class="post">
-                        <div class="course-block">
-                            <img class="img-bordered" src="http://placehold.it/200x150">
-                            <span class='course-name'>
-                                <a href="#/course/1">Project Management</a>
-                            </span>
-                            <span class='info'><b>School:</b><a href="#/presenter/1">University of Cambridge</a></span>
-                            <span class='info'><b>Teacher:</b><a href="#/teacher/1">Liang Guo</a><a href="#/teacher/1">Jiadong Hu</a></span>
-                            <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
-                            </p>
-                        </div><!-- /.user-block -->
 
-                    </div><!-- /.post -->
 
-                    <!-- Post -->
-                    <div class="post">
-                        <div class="course-block">
-                            <img class="img-bordered" src="http://placehold.it/200x150">
-                            <span class='course-name'>
-                                <a href="#/course/1">Algorithm Introduction</a>
-                            </span>
-                            <span class='info'><b>School:</b><a href="#/presenter/1">University of Cambridge</a></span>
-                            <span class='info'><b>Teacher:</b><a href="#/teacher/1">Liang Guo</a><a href="#/teacher/1">Jiadong Hu</a></span>
-                            <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
-                            </p>
-                        </div><!-- /.user-block -->
 
-                    </div><!-- /.post -->
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
