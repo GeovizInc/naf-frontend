@@ -9,7 +9,7 @@
 
     function config($routeProvider){
         $routeProvider
-            .when('/search', {
+            .when('/search/alter', {
                 templateUrl: 'views/attendee/search.html',
                 controller: 'SearchController'
             });

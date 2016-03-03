@@ -24,7 +24,8 @@
             var credential = {
                 email: $scope.teacher.email,
                 password: $scope.teacher.password,
-                userType: 'teacher'
+                userType: 'teacher',
+                presenter: Auth._user._id
             };
             Teacher.save(credential, function(response){
                 console.log(response);

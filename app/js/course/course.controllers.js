@@ -14,7 +14,7 @@
     function courseStoreController($rootScope, $scope, $location, Course, Auth, Flash) {
         $scope.user = null ;
         if(Auth._user) {
-            $scope.user = $scope._user;
+            $scope.user = Auth._user;
         } else {
             Auth.logout();
             $location.path('/login');
