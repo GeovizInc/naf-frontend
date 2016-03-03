@@ -27,6 +27,11 @@
         };
 
         $scope.register = function() {
+            if(!$scope.users.email || !$scope.users.password){
+                Flash.create('warning', 'please fill the email and password');
+            } else if($scope.users.password != $scope.users.confirmPassword) {
+                Flash.create('warning', 'Passwords you entered are different');
+            }
             var credential = {
                 email: $scope.users.email,
                 password: $scope.users.password,

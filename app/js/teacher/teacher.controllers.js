@@ -13,8 +13,8 @@
     //TeacherStoreController
     function teacherStoreController($rootScope, $scope, $location, Teacher, Auth, Flash) {
         $scope.user = null ;
-        if(Auth._user) {
-            $scope.user = Auth._user;
+        if(Auth._user && Auth._user.userType == 'presenter') {
+            $scope.user = $scope._user;
         } else {
             Auth.logout();
             $location.path('/login');
@@ -27,8 +27,8 @@
                 userType: 'teacher',
                 presenter: Auth._user._id
             };
-            Teacher.save(credential, function(response) {
-                //console.log(response);
+            Teacher.save(credential, function(response){
+                console.log(response);
                 $scope.teacher._id = response._id;
                 Teacher.update($scope.teacher, function(response) {
                     //console.log(response);
@@ -40,7 +40,7 @@
             }, function(error) {
                 console.log("error: "+JSON.stringify(error));
             });
-        }
+        };
     }
 
     //TeacherIndexController
