@@ -49,6 +49,7 @@
         }
         $scope.user = Auth._user;
         Presenter.getCourses({presenter_id: $scope.user._id}, function(response) {
+            console.log(response);
             $scope.courses = response;
         }, function(error) {
             console.log(error);
