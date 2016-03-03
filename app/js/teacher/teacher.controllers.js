@@ -7,8 +7,8 @@
     angular.module('naf.teacher')
         .controller('TeacherStoreController', ['$rootScope', '$scope', '$location', 'Teacher', 'Auth', 'Flash', teacherStoreController])
         .controller('TeacherIndexController', ['$rootScope', '$scope', '$location', 'Presenter', 'Auth', 'Flash', teacherIndexController])
-        .controller('TeacherShowController', ['$rootScope', '$scope', '$location', 'Teacher', 'Auth',  'Flash', teacherShowController])
-        .controller('TeacherEditController', ['$rootScope', '$scope', '$location', 'Teacher', 'Auth',  'Flash', teacherEditController]);
+        .controller('TeacherShowController', ['$rootScope', '$scope', '$location', '$routeParams', 'Teacher', 'Auth',  'Flash', teacherShowController])
+        .controller('TeacherUpdateController', ['$rootScope', '$scope', '$location', '$routeParams', 'Teacher', 'Auth',  'Flash', teacherUpdateController]);
 
     //TeacherStoreController
     function teacherStoreController($rootScope, $scope, $location, Teacher, Auth, Flash) {
@@ -65,13 +65,41 @@
     }
 
 
-    //TeacherViewController
-    function teacherShowController($rootScope, $scope, $location, $log, Teacher, Flash) {
-
+    //TeacherShowController
+    function teacherShowController($rootScope, $scope, $location, $routeParams, Teacher, Auth, Flash) {
+        $scope.teacher = null;
+        $scope.isPresenter = null;
+        Teacher.get({teacher_id: $routeParams.teacher_id}, function(response) {
+            console.log(response);
+            $scope.teacher = response;
+            if(Auth._user && Auth._user._id == $scope.teacher.presenter._id) {
+                $scope.isPresenter = true;
+            }
+        }, function(error) {
+            Flash.create('danger', 'Can not get this teacher!');
+            $location.path('/search');
+        });
     }
 
-    //TeacherEditController
-    function teacherEditController($rootScope, $scope, $location, $log, Teacher, Flash) {
+    //TeacherUpdateController
+    function teacherUpdateController($rootScope, $scope, $location, $routeParams, Teacher, Auth, Flash) {
+        $scope.teacher = null;
+        Teacher.get({teacher_id: $routeParams.teacher_id}, function(response) {
+            console.log(response);
+            $scope.teacher = response;
+        }, function(error) {
+            Flash.create('danger', 'Can not get this teacher!');
+            $location.path('/teacher');
+        });
 
+        $scope.updateTeacher = function() {
+            Teacher.update($scope.teacher, function(response) {
+                console.log(response);
+                Flash.create('success', 'Teacher has been updated!');
+                $location.path('/teacher');
+            }, function(error) {
+                console.log(error);
+            });
+        };
     }
 })();

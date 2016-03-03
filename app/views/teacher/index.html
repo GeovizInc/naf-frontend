@@ -32,28 +32,10 @@
                             <th width="1%"></th>
                         </tr>
                         <tr ng-repeat="teacher in teachers">
-                            <td><a href="#/teacher/1"><img src="http://placehold.it/50x50"/></a></td>
-                            <td><a href="#/teacher/1">{{teacher.name}}</a></td>
-                            <td>JohnDoe@example.com</td>
-                            <td><a href="#/teacher/create" type="button" class="btn btn-default btn-xs">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#/teacher/1"><img src="http://placehold.it/50x50"/></a></td>
-                            <td><a href="#/teacher/1">Alexander Pierce</a></td>
-                            <td>JohnDoe@example.com</td>
-                            <td><a href="#/teacher/create" type="button" class="btn btn-default btn-xs">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#/teacher/1"><img src="http://placehold.it/50x50"/></a></td>
-                            <td><a href="#/teacher/1">Bob Doe</a></td>
-                            <td>JohnDoe@example.com</td>
-                            <td><a href="#/teacher/create" type="button" class="btn btn-default btn-xs">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#/teacher/1"><img src="http://placehold.it/50x50"/></a></td>
-                            <td><a href="#/teacher/1">Mike Doe</a></td>
-                            <td>JohnDoe@example.com</td>
-                            <td><a href="#/teacher/create" type="button" class="btn btn-default btn-xs">Edit</a></td>
+                            <td><a href="#/teacher/{{teacher._id}}"><img src="http://placehold.it/50x50"/></a></td>
+                            <td><a href="#/teacher/{{teacher._id}}">{{teacher.name}}</a></td>
+                            <td>{{teacher.email}}</td>
+                            <td><a href="#/teacher/{{teacher._id}}/edit" type="button" class="btn btn-default btn-xs">Edit</a></td>
                         </tr>
                     </table>
                 </div><!-- /.box-body -->
