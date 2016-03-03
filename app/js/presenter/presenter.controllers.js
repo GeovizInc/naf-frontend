@@ -31,7 +31,7 @@
                 location:$scope.user.location,
                 description: $scope.user.description,
                 imageLink: $scope.user.imageLink
-            }
+            };
             Presenter.update(presenter, function(response){
                 Flash.create('success',"Update Successful");
                 $location.path('/presenter/'+$scope.user._id);

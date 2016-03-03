@@ -22,15 +22,15 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Name">
+                            <input type="text" class="form-control" id="name" placeholder="Name" ng-model="teacher.name">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Email">
+                            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="teacher.email">
                         </div>
                         <div class="form-group">
                             <label for="password">Confirm Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" class="form-control" id="password" placeholder="Password" ng-model="teacher.password">
                         </div>
                         <div class="form-group">
                             <label for="passwordConfirm">Password</label>
@@ -43,13 +43,14 @@
                         </div>
                         <div class="form-group">
                             <label for="intro">Introduction</label>
-                            <textarea class="form-control" rows="5" id="intro"></textarea>
+                            <textarea class="form-control" rows="5" id="intro" ng-model="teacher.description"></textarea>
                         </div>
                     </div>
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button ng-if="!teacher._id" type="submit" class="btn btn-primary" ng-click="createTeacher()">Submit</button>
+                        <button ng-if="teacher._id" type="submit" class="btn btn-primary" ng-click="updateTeacher()">Submit</button>
                     </div>
                 </form>
             </div>

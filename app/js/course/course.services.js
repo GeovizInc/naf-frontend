@@ -19,7 +19,7 @@
             //delete course
             remove: {
                 url: Config.api + '/course/delete',
-                method: 'POST',
+                method: 'POST'
             },
             // get lecture list of the course
             getLecture: {
