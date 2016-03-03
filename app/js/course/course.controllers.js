@@ -45,7 +45,7 @@
             $location.path('/login');
         } else if(Auth._user.userType != 'presenter') {
             Flash.create('danger','Current user is not a presenter');
-            $location.path('/Search');
+            $location.path('/search');
         }
         $scope.user = Auth._user;
         Presenter.getCourses({presenter_id: $scope.user._id}, function(response) {

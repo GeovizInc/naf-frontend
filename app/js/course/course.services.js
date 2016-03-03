@@ -18,8 +18,8 @@
             },
             //delete course
             remove: {
-                url: Config.api + '/course',
-                method: 'DELETE',
+                url: Config.api + '/course/delete',
+                method: 'POST',
             },
             // get lecture list of the course
             getLecture: {
