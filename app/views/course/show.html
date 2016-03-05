@@ -51,60 +51,16 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <!-- Post -->
-                    <div class="post">
+                    <div class="post" ng-repeat="lecture in lectures">
                         <div class="course-block">
-                            <a href="#/lecture/1"><img class="img-bordered" src="http://placehold.it/200x150"></a>
+                            <a href="#/lecture/{{lecture._id}}"><img class="img-bordered" src="http://placehold.it/200x150"></a>
                             <span class='course-name'>
-                                <a href="#/lecture/1">Java Lecture 3</a>
+                                <a href="#/lecture/{{lecture._id}}">{{lecture.name}}</a>
                             </span>
-                            <span class='info'><b>Teacher:</b><a href="#/teacher/1">Liang Guo</a></span>
-                            <span class='info'><b>Date:</b>3 days ago</span>
+                            <span class='info'><b>Teacher:</b><a href="#/teacher/{{lecture.teacher._id}}">{{lecture.teacher.name}}</a></span>
+                            <span class='info'><b>Date:</b>{{lecture.time | date:'medium'}}</span>
                             <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
-                            </p>
-                        </div><!-- /.user-block -->
-
-                    </div><!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post">
-                        <div class="course-block">
-                            <a href="#/lecture/1"><img class="img-bordered" src="http://placehold.it/200x150"></a>
-                            <span class='course-name'>
-                                <a href="#/lecture/1">Java Lecture 2</a>
-                            </span>
-                            <span class='info'><b>Teacher:</b><a href="#/teacher/1">Liang Guo</a></span>
-                            <span class='info'><b>Date:</b>3 days ago</span>
-                            <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
-                            </p>
-                        </div><!-- /.user-block -->
-
-                    </div><!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post">
-                        <div class="course-block">
-                            <a href="#/lecture/1"><img class="img-bordered" src="http://placehold.it/200x150"></a>
-                            <span class='course-name'>
-                                <a href="#/lecture/1">Java Lecture 1</a>
-                            </span>
-                            <span class='info'><b>Teacher:</b><a href="#/teacher/1">Jiadong Hu</a></span>
-                            <span class='info'><b>Date:</b>3 days ago</span>
-                            <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
+                                {{lecture.description}}
                             </p>
                         </div><!-- /.user-block -->
 

@@ -65,7 +65,7 @@
                                 <a href="#/course/{{course._id}}/view">{{course.name}}</a>
                             </span>
                             <!--<span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>-->
-                            <span class='info'><b>Updated at:</b>3 days ago</span>
+                            <span class='info'><b>Updated at:</b>{{course.updatedAt | date:'medium'}}</span>
                             <!--<span class='info'><b>Lecture:</b>5</span>-->
                             <p class="description">
                                 {{course.description}}

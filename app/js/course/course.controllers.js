@@ -67,7 +67,7 @@
             if(Auth._user && Auth._user._id == $scope.course.presenter._id) {
                 $scope.isPresenter = true;
             }
-            $scope.lectures = Course.getLecture({course_id: $scope.course._id});
+            $scope.lectures = Course.getLectures({course_id: $scope.course._id});
         }, function(error) {
             Flash.create('danger', 'Can not get this course!');
             $location.path('/search');
@@ -105,6 +105,10 @@
                 console.log(error);
                 Flash.create('danger', 'Course can not been removed, please try again');
             });
+        };
+
+        $scope.manageLectures = function() {
+            $location.path('/lecture/' + $routeParams.course_id + '/create');
         }
 
     }

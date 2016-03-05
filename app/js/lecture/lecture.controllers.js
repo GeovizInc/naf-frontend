@@ -6,7 +6,7 @@
 
     angular.module('naf.lecture')
         .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', lectureStoreController])
-        .controller('LectureController', ['$rootScope', '$scope', '$location', '$log', 'Course', 'Lecture', LectureController])
+        .controller('LectureController', ['$rootScope', '$scope', '$location', '$sce', '$routeParams', 'Course', 'Lecture', LectureController])
         .controller('UploadLectureController', ['$scope', '$timeout', 'Upload', 'Vimeo', uploadLecture]);
 
     //LectureController
@@ -19,40 +19,79 @@
             $location.path('/login');
         }
         Presenter.getTeachers({presenter_id: $scope.user._id}, function(response) {
-            console.log(response);
             $scope.teachers = response;
         }, function(error) {
             console.log(error);
         });
-        $scope.lecture = {};
-        $scope.lecture.course = $routeParams.course_id;
+
+        function reset() {
+            $scope.lecture = {};
+            $scope.lecture = {
+                course: $routeParams.course_id
+            };
+            $scope.lectures = Course.getLectures({course_id: $routeParams.course_id});
+        }
+
         $scope.createLecture = function() {
             Lecture.save($scope.lecture, function(response) {
-                console.log(response);
                 Flash.create('success', 'Lecture has been created!');
-                $location.path('/course/'+ $scope.lecture.course_id +'/view');
+                reset();
             }, function(error) {
                 console.log("error: "+JSON.stringify(error));
             });
-        }
+        };
 
-        $scope.lectures = Course.getLecture({course_id: $routeParams.course_id});
-        console.log($scope.lectures);
+        reset();
     }
 
     //LectureController
-    function LectureController($rootScope, $scope, $location, $log, Course, Lecture) {
-        $scope.teachers = [{
-            id: 1,
-            name: 'Liang Guo'
-        }, {
-            id: 2,
-            name: 'Jiadong Hu'
-        }, {
-            id: 3,
-            name: 'Yucheng Wang'
-        }];
-        console.log('lecture show');
+    function LectureController($rootScope, $scope, $location, $sce, $routeParams, Course, Lecture) {
+        var lectureId = $routeParams.lecture_id;
+        var relatedLecturesSize = 2;
+        loadLecture();
+
+        function loadLecture() {
+            Lecture.get({lecture_id: lectureId}, function(response) {
+                var lecture = response;
+                lecture.hasVideo = angular.isDefined(lecture.vimeoLink);
+                lecture.hasZoom = angular.isDefined(lecture.zoomLink);
+                lecture.vimeoLink = $sce.trustAsResourceUrl(lecture.vimeoLink);
+                $scope.lecture = lecture;
+                loadLectureList(lecture.course._id);
+            });
+        }
+
+        function loadLectureList(courseId) {
+             Course.getLectures({course_id: courseId}, function(response) {
+                 var lectures = response;
+                 var lecturesCount = 0;
+                 $scope.relatedLectures = [];
+                 if(lectures.length < relatedLecturesSize) {
+                     $scope.relatedLectures = lectures;
+                     return;
+                 }
+
+                 var index = getIndex(lectureId);
+                 for(; lecturesCount < relatedLecturesSize; lecturesCount++) {
+                     if(++index >= lectures.length) index = 0;
+                     $scope.relatedLectures.push(lectures[index]);
+                 }
+
+                 function getIndex(lectureId) {
+                     var i = 0;
+                     for(; i < lectures.length; i++) {
+                         if(lectures[i]._id === lectureId) {
+                             break;
+                         }
+                     }
+                     return i;
+                 }
+
+             });
+        }
+
+
+
     }
 
     function uploadLecture($scope, $timeout, Upload, Vimeo) {

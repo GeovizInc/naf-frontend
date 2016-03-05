@@ -2,34 +2,37 @@
 <section class="content">
     <div class="row">
         <div class="col-md-9">
-            <div class="embed-responsive embed-responsive-16by9">
+            <div ng-show = "lecture.hasVideo" class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item"
-                        src="https://player.vimeo.com/video/153165991?badge=0&autopause=0&player_id=0" frameborder="0"
-                        title="2015-06-09 14.40.22" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        src="{{lecture.vimeoLink}}" frameborder="0"
+                        title="{{lecture.name}}" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             </div>
             <div class="box box-solid">
                 <div class="box-header">
-                    <h3 class="box-title">Java Lecture 3</h3>
+                    <h3 class="box-title">{{lecture.name}}</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <dl class="dl-horizontal">
                         <dt>Course:</dt>
-                        <dd><a href="#/course/1">Java Introduction</a></dd>
+                        <dd><a href="#/course/{{lecture.course._id}}/view">{{lecture.course.name}}</a></dd>
                         <dt>Teacher:</dt>
-                        <dd class="teacher"><a href="#/teacher/1">Liang Guo</a></dd>
+                        <dd class="teacher"><a href="#/teacher/{{lecture.teacher._id}}">{{lecture.teacher.name}}</a></dd>
                         <dt>School:</dt>
-                        <dd><a href="#/presenter/1">University of Cambridge</a></dd>
+                        <dd><a href="#/presenter/{{lecture.presenter._id}}">{{lecture.presenter.name}}</a></dd>
                         <dt>Description:</dt>
                         <dd>
-                            Lorem ipsum represents a long-held tradition for designers,
-                            typographers and the like. Some people hate it and argue for
-                            its demise, but others ignore the hate as they create awesome
-                            tools to help create filler text for everyone from bacon lovers
-                            to Charlie Sheen fans.
+                            {{lecture.description}}
                         </dd>
                     </dl>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
+            <div ng-show="!lecture.hasVideo && lecture.hasZoom" class="box box-solid">
+                <div class="box-body">
+                    <h2 class="text-center"><a href="{{lecture.zoomLink}}">Attend class</a></h2>
+                    <p class="text-center"><strong>Start at {{lecture.time | date:'medium'}}</strong></p>
+                </div>
+
+            </div>
         </div><!-- /.col -->
         <div class="col-md-3">
             <div class="box box-default">
@@ -38,35 +41,14 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <!-- Post -->
-                    <div class="post">
+                    <div ng-repeat="relatedLecture in relatedLectures" class="post">
                         <div class="related-lecture-block">
-                            <a href="#/lecture/1"><img class="img-bordered" src="http://placehold.it/100x100"></a>
+                            <a href="#/lecture/{{relatedLecture._id}}"><img class="img-bordered" src="http://placehold.it/100x100"></a>
                             <span class='lecture-name'>
-                                <a href="#/lecture/1">Java Lecture 2</a>
+                                <a href="#/lecture/{{relatedLecture._id}}">{{relatedLecture.name}}</a>
                             </span>
                             <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
-                            </p>
-                        </div><!-- /.user-block -->
-
-                    </div><!-- /.post -->
-                    <!-- Post -->
-                    <div class="post">
-                        <div class="related-lecture-block">
-                            <a href="#/lecture/1"><img class="img-bordered" src="http://placehold.it/100x100"></a>
-                            <span class='lecture-name'>
-                                <a href="#/lecture/1">Java Lecture 1</a>
-                            </span>
-                            <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
+                                {{relatedLecture.description}}
                             </p>
                         </div><!-- /.user-block -->
 
