@@ -28,10 +28,8 @@
                 presenter: Auth._user._id
             };
             Teacher.save(credential, function(response){
-                console.log(response);
                 $scope.teacher._id = response._id;
                 Teacher.update($scope.teacher, function(response) {
-                    //console.log(response);
                     Flash.create('success', 'Teacher has been created!');
                     $location.path('/teacher');
                 }, function(error) {

@@ -44,7 +44,7 @@
             </div>
             <!-- /.box -->
 
-            <button ng-if="course._id" type="submit" class="btn btn-primary btn-block">Manage Lectures</button>
+            <button ng-if="course._id" type="submit" class="btn btn-primary btn-block" ng-click="manageLectures()">Manage Lectures</button>
             <button ng-if="course._id" type="submit" class="btn btn-danger btn-block" confirm-delete="are you sure to delete ?" ng-click="removeCourse()" >Remove this Course</button>
 
         </div>

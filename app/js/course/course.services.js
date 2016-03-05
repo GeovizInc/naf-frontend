@@ -22,7 +22,7 @@
                 method: 'POST'
             },
             // get lecture list of the course
-            getLecture: {
+            getLectures: {
                 url: Config.api + '/course/:course_id/lectures',
                 method: 'GET',
                 params: {course_id: '@course_id'},
