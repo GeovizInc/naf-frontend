@@ -169,7 +169,7 @@
                                                 access_token: accessToken
                                             },
                                             function (response) {
-                                                var vimeoVideoId = response.headers.location
+                                                var vimeoVideoId = getVimeoVideoIdByVideoUri(response.headers.location);
                                                 console.log(vimeoVideoId);
                                             },
                                             function (error) {
@@ -214,6 +214,10 @@
 
     function getVimeoUserIdByUserUri(userUri) {
         return userUri.substring('/users/'.length);
+    }
+
+    function getVimeoVideoIdByVideoUri(videoUri) {
+        return videoUri.substring('/videos/'.length);
     }
 
 })();
