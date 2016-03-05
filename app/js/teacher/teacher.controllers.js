@@ -5,10 +5,29 @@
     'use strict';
 
     angular.module('naf.teacher')
+        .controller('TeacherHomeController', ['$rootScope', '$scope', '$location', '$routeParams', 'Teacher', 'Auth', 'Flash', teacherHomeController])
         .controller('TeacherStoreController', ['$rootScope', '$scope', '$location', 'Teacher', 'Auth', 'Flash', teacherStoreController])
         .controller('TeacherIndexController', ['$rootScope', '$scope', '$location', 'Presenter', 'Auth', 'Flash', teacherIndexController])
         .controller('TeacherShowController', ['$rootScope', '$scope', '$location', '$routeParams', 'Teacher', 'Auth',  'Flash', teacherShowController])
         .controller('TeacherUpdateController', ['$rootScope', '$scope', '$location', '$routeParams', 'Teacher', 'Auth',  'Flash', teacherUpdateController]);
+
+    //TeacherHomeController
+    function teacherHomeController($rootScope, $scope, $location, $routeParams, Teacher, Auth, Flash) {
+        $scope.user = null;
+        if(!Auth._user) {
+            Flash.create('danger','Please Login');
+            $location.path('/login');
+        } else if(Auth._user.userType != 'teacher') {
+            Flash.create('danger','Current user is not a teacher');
+            $location.path('/Search');
+        }
+        $scope.user = Auth._user;
+        Teacher.getLecture({teacher_id: $routeParams.teacher_id}, function(response) {
+            console.log(response);
+        }, function(error) {
+            console.log(error);
+        });
+    }
 
     //TeacherStoreController
     function teacherStoreController($rootScope, $scope, $location, Teacher, Auth, Flash) {
