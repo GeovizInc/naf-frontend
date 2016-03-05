@@ -42,7 +42,29 @@
         };
 
         //change passwords
-
+        $scope.changePassword = function() {
+              if(!$scope.currentPassword){
+                  Flash.create('danger', 'Please enter Current Password');
+                  return;
+              }else if(!$scope.password || $scope.password != $scope.confirmPassword) {
+                  Flash.create('danger', 'Passwrods you entered are different');
+                  return;
+              }
+              var passwords = {
+                  id: $scope.user._id,
+                  currentPassword: $scope.currentPassword,
+                  password: $scope.password
+              };
+                Auth.changePassword(passwords, function(response) {
+                    Flash.create('success', 'Passwords changed');
+                    $scope.currentPassword = null;
+                    $scope.password = null;
+                    $scope.confirmPassword = null;
+                    }, function(error) {
+                    Flash.create('danger', error.data.message);
+                    console.log(error);
+                    });
+        };
 
 
         //list course

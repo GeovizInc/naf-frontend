@@ -51,21 +51,21 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="currentPasswor">Current Password</label>
-                            <input type="password" class="form-control" id="currentPasswor" placeholder="Current Password">
+                            <input type="password" class="form-control" id="currentPasswor" placeholder="Current Password" ng-model="currentPassword">
                         </div>
                         <div class="form-group">
                             <label for="newPassword">New Password</label>
-                            <input type="password" class="form-control" id="newPassword" placeholder="New Password">
+                            <input type="password" class="form-control" id="newPassword" placeholder="New Password" ng-model="password">
                         </div>
                         <div class="form-group">
                             <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" ng-model="confirmPassword">
                         </div>
                     </div>
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" ng-click="changePassword()">Submit</button>
                     </div>
                 </form>
             </div>
