@@ -74,12 +74,12 @@
                             <th>Date</th>
                             <th width="1%"></th>
                         </tr>
-                        <tr ng-repeat="lecture in lectures">
-                            <td><a href="#/lecture/{{lecture._id}}"><img src="http://placehold.it/100x75"/></a></td>
-                            <td><a href="#/lecture/{{lecture._id}}">{{lecture.name}}</a></td>
-                            <td class="teacher"><a href="#/teacher/1">{{lecture.teacher.name}}</a></td>
-                            <td>{{lecture.time}}</td>
-                            <td><a href="" type="button" class="btn btn-default btn-xs">Edit</a></td>
+                        <tr ng-repeat="lectureItem in lectures">
+                            <td><a href="#/lecture/{{lectureItem._id}}"><img src="http://placehold.it/100x75"/></a></td>
+                            <td><a href="#/lecture/{{lectureItem._id}}">{{lectureItem.name}}</a></td>
+                            <td class="teacher"><a href="#/teacher/{{lectureItem.teacher._id}}">{{lectureItem.teacher.name}}</a></td>
+                            <td>{{lectureItem.time | date:'medium'}}</td>
+                            <td><a href="" type="button" class="btn btn-default btn-xs" ng-click="loadLectureInfo(lectureItem)">Edit</a></td>
                         </tr>
                     </table>
                 </div><!-- /.box-body -->
