@@ -74,7 +74,7 @@
         function loadLecture() {
             Lecture.get({lecture_id: lectureId}, function(response) {
                 var lecture = response;
-                lecture.hasVideo = angular.isDefined(lecture.vimeoLink);
+                lecture.hasVideo = (angular.isDefined(lecture.vimeoLink) && lecture.vimeoLink !== null && lecture.vimeoLink !== '');
                 lecture.hasZoom = angular.isDefined(lecture.zoomLink);
                 lecture.vimeoLink = $sce.trustAsResourceUrl(lecture.vimeoLink);
                 $scope.lecture = lecture;

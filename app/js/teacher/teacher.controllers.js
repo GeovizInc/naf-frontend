@@ -21,8 +21,14 @@
             Flash.create('danger','Current user is not a teacher');
             $location.path('/Search');
         }
+        Teacher.get({'teacher_id':$routeParams.teacher_id}, function(response) {
+            $scope.teacher = response;
+        }, function(error) {
+            console.log(error);
+        });
         $scope.user = Auth._user;
         Teacher.getLecture({teacher_id: $routeParams.teacher_id}, function(response) {
+            $scope.lectures = response;
             console.log(response);
             $scope.lectures = response;
         }, function(error) {
@@ -53,10 +59,11 @@
                     Flash.create('success', 'Teacher has been created!');
                     $location.path('/teacher');
                 }, function(error) {
-                    console.log(error);
+                    Flash.create('danger', error.data.message);
                 });
             }, function(error) {
                 console.log("error: "+JSON.stringify(error));
+                Flash.create('danger', error.data.message);
             });
         };
     }

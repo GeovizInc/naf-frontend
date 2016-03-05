@@ -85,7 +85,6 @@
         function isExcepted(URLStr) {
             try {
                 var url = new URL(URLStr);
-                console.log(url.host);
                 for(var i = 0; i < excpetions.length; i++) {
                     if(excpetions[i].test(url.host)) return true;
                 }
@@ -102,7 +101,7 @@
                 if (token) {
                     request.headers.Authorization = token;
                 }
-                console.log('request sent');
+
                 return request;
             },
 
@@ -123,7 +122,6 @@
                     Auth.logout();
                     $location.path('/register').replace();
                 }
-                console.log('response received');
                 return response;
             },
 
