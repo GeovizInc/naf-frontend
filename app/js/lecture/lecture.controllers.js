@@ -41,6 +41,27 @@
             });
         };
 
+        $scope.updateLecture = function() {
+            Lecture.update($scope.lecture, function(response) {
+                Flash.create('success', 'Lecture updated');
+                reset();
+            }, function(error) {
+                Flash.create('danger', 'Unable to save lecture');
+                console.error(error);
+            });
+        };
+
+        $scope.loadLectureInfo = function(lectureItem) {
+            //TODO figure out why teacher and time are not binding to directives
+            $scope.lecture = {
+                _id: lectureItem._id,
+                name: lectureItem.name,
+                teacher: lectureItem.teacher,
+                time: lectureItem.time,
+                description: lectureItem.description
+            };
+        };
+
         reset();
     }
 
@@ -53,7 +74,7 @@
         function loadLecture() {
             Lecture.get({lecture_id: lectureId}, function(response) {
                 var lecture = response;
-                lecture.hasVideo = angular.isDefined(lecture.vimeoLink);
+                lecture.hasVideo = (angular.isDefined(lecture.vimeoLink) && lecture.vimeoLink !== null && lecture.vimeoLink !== '');
                 lecture.hasZoom = angular.isDefined(lecture.zoomLink);
                 lecture.vimeoLink = $sce.trustAsResourceUrl(lecture.vimeoLink);
                 $scope.lecture = lecture;
