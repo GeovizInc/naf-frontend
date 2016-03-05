@@ -4,7 +4,7 @@
 (function() {
     'use strict';
 
-    angular.module('naf', ['ngRoute', 'ngResource', 'angular-storage', 'ngFileUpload', 'angular-jwt', 'flash',
+    angular.module('naf', ['ngRoute', 'ngResource', 'angular-storage', 'ngFileUpload', 'angular-jwt', 'flash', 'ngDialog',
         'naf.presenter', 'naf.config', 'naf.teacher', 'naf.course', 'naf.lecture', 'naf.attendee', 'naf.auth', 'naf.search'])
         .controller('MainController',['$rootScope', '$scope', '$location', '$log', 'Presenter', 'Auth', 'Flash', mainController])
         .config(['$httpProvider', configApp]);

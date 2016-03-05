@@ -8,7 +8,7 @@
         .controller('CourseStoreController', ['$rootScope', '$scope', '$location', 'Course', 'Auth', 'Flash', courseStoreController])
         .controller('CourseListController', ['$rootScope', '$scope', '$location', 'Presenter', 'Auth', 'Flash', courseListController])
         .controller('CourseViewController', ['$rootScope', '$scope', '$location', '$routeParams', 'Course', 'Flash', 'Auth', courseViewController])
-        .controller('CourseEditController', ['$rootScope', '$scope', '$location', '$routeParams', 'Course', 'Flash', courseEditController]);
+        .controller('CourseEditController', ['$rootScope', '$scope', '$location', '$routeParams', 'Course', 'Flash', 'ngDialog', courseEditController]);
 
     //CourseStoreController
     function courseStoreController($rootScope, $scope, $location, Course, Auth, Flash) {
@@ -78,7 +78,7 @@
     }
 
     //CourseEditController
-    function courseEditController($rootScope, $scope, $location, $routeParams, Course,Flash) {
+    function courseEditController($rootScope, $scope, $location, $routeParams, Course, Flash, ngDialog) {
         $scope.course = null;
         Course.get({course_id: $routeParams.course_id}, function(response) {
             $scope.course = response;
@@ -95,6 +95,14 @@
           }, function(error) {
               console.log(error);
           });
+        };
+
+        $scope.confirmRemove = function() {
+            ngDialog.open({
+                template: 'views/course/delete.html',
+                className: 'ngdialog-theme-default',
+                scope: $scope
+            });
         };
 
         $scope.removeCourse = function() {
