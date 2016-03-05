@@ -5,12 +5,12 @@
     'use strict';
 
     angular.module('naf.lecture')
-        .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Auth', 'Flash', lectureStoreController])
+        .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', lectureStoreController])
         .controller('LectureController', ['$rootScope', '$scope', '$location', '$log', 'Course', 'Lecture', LectureController])
         .controller('UploadLectureController', ['$scope', '$timeout', 'Upload', 'Vimeo', uploadLecture]);
 
     //LectureController
-    function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Auth, Flash) {
+    function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash) {
         $scope.user = null ;
         if(Auth._user) {
             $scope.user = Auth._user;
@@ -35,6 +35,9 @@
                 console.log("error: "+JSON.stringify(error));
             });
         }
+
+        $scope.lectures = Course.getLecture({course_id: $routeParams.course_id});
+        console.log($scope.lectures);
     }
 
     //LectureController
@@ -49,6 +52,7 @@
             id: 3,
             name: 'Yucheng Wang'
         }];
+        console.log('lecture show');
     }
 
     function uploadLecture($scope, $timeout, Upload, Vimeo) {

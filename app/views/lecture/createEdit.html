@@ -74,25 +74,11 @@
                             <th>Date</th>
                             <th width="1%"></th>
                         </tr>
-                        <tr>
-                            <td><a href="#/lecture/1"><img src="http://placehold.it/100x75"/></a></td>
-                            <td><a href="#/lecture/1">Java Lecture 3</a></td>
-                            <td class="teacher"><a href="#/teacher/1">Liang Guo</a></td>
-                            <td>2016-01-03 8:00 AM</td>
-                            <td><a href="" type="button" class="btn btn-default btn-xs">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#/lecture/1"><img src="http://placehold.it/100x75"/></a></td>
-                            <td><a href="#/lecture/1">Java Lecture 2</a></td>
-                            <td class="teacher"><a href="#/teacher/1">Liang Guo</a></td>
-                            <td>2016-01-02 8:00 AM</td>
-                            <td><a href="" type="button" class="btn btn-default btn-xs">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#/lecture/1"><img src="http://placehold.it/100x75"/></a></td>
-                            <td><a href="#/lecture/1">Java Lecture 1</a></td>
-                            <td class="teacher"><a href="#/teacher/1">Jiadong Hu</a></td>
-                            <td>2016-01-01 8:00 AM</td>
+                        <tr ng-repeat="lecture in lectures">
+                            <td><a href="#/lecture/{{lecture._id}}"><img src="http://placehold.it/100x75"/></a></td>
+                            <td><a href="#/lecture/{{lecture._id}}">{{lecture.name}}</a></td>
+                            <td class="teacher"><a href="#/teacher/1">{{lecture.teacher.name}}</a></td>
+                            <td>{{lecture.time}}</td>
                             <td><a href="" type="button" class="btn btn-default btn-xs">Edit</a></td>
                         </tr>
                     </table>

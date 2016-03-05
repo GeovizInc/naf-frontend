@@ -31,7 +31,7 @@
                         <div class="course-block">
                             <img class="img-bordered" src="{{course.imageLink || 'http://placehold.it/200x150'}} ">
                             <span class='course-name'>
-                                <a href="#/course/1">{{course.name}}</a>
+                                <a href="#/course/{{course._id}}/view">{{course.name}}</a>
                             </span>
                             <span class='info'><b>School:</b><a href="#/presenter/{{course.presenter._id}}">{{course.presenter.name || 'School Name'}}</a></span>
                             <!--<span class='info'><b>Teacher:</b><a href="#/teacher/1">Liang Guo</a><a href="#/teacher/1">Jiadong Hu</a></span>-->

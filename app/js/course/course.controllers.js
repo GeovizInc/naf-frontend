@@ -67,10 +67,12 @@
             if(Auth._user && Auth._user._id == $scope.course.presenter._id) {
                 $scope.isPresenter = true;
             }
+            $scope.lectures = Course.getLecture({course_id: $scope.course._id});
         }, function(error) {
             Flash.create('danger', 'Can not get this course!');
             $location.path('/search');
         });
+
 
 
     }
