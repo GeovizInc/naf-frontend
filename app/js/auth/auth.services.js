@@ -80,7 +80,8 @@
     //AuthInterceptor
     function authInterceptor($location, $q, $injector, store, jwtHelper) {
         var excpetions = [
-            'api.vimeo.com'
+            'api.vimeo.com',
+            'cloud.vimeo.com'
         ];
         function isExcepted(URLStr) {
             try {
