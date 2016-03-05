@@ -79,8 +79,24 @@
 
     //AuthInterceptor
     function authInterceptor($location, $q, $injector, store, jwtHelper) {
+        var excpetions = [
+            'api.vimeo.com'
+        ];
+        function isExcepted(URLStr) {
+            try {
+                var url = new URL(URLStr);
+                console.log(url.host);
+                for(var i = 0; i < excpetions.length; i++) {
+                    if(excpetions[i] === url.host) return true;
+                }
+            } catch(exception) {
+
+            }
+            return false;
+        }
         var interceptor = {
             request : function(request) {
+                if(isExcepted(request.url)) return request;
                 var Auth = $injector.get('Auth');
                 var token = Auth._token;
                 if (token) {
@@ -95,6 +111,7 @@
             },
 
             response : function(response) {
+                if(isExcepted(response.config.url)) return response;
                 var Auth = $injector.get('Auth');
                 var oldToken = store.get('token'),
                     newToken = response.headers('Authorization');
