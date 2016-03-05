@@ -35,10 +35,11 @@
                     Flash.create('success', 'Teacher has been created!');
                     $location.path('/teacher');
                 }, function(error) {
-                    console.log(error);
+                    Flash.create('danger', error.data.message);
                 });
             }, function(error) {
                 console.log("error: "+JSON.stringify(error));
+                Flash.create('danger', error.data.message);
             });
         };
     }
