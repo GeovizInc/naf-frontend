@@ -7,7 +7,7 @@
     angular.module('naf.lecture')
         .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', lectureStoreController])
         .controller('LectureController', ['$rootScope', '$scope', '$location', '$sce', '$routeParams', 'Course', 'Lecture', LectureController])
-        .controller('UploadLectureController', ['$scope', '$timeout', 'Upload', 'Vimeo', uploadLecture]);
+        .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', uploadLecture]);
 
     //LectureController
     function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash) {
@@ -94,7 +94,15 @@
 
     }
 
-    function uploadLecture($scope, $timeout, Upload, Vimeo) {
+    function uploadLecture($rootScope, $scope, $location, $timeout, $routeParams, Upload, Auth, Vimeo) {
+        $scope.user = null ;
+        if(Auth._user) {
+            $scope.user = Auth._user;
+        } else {
+            Auth.logout();
+            $location.path('/login');
+        }
+
         var accessToken = 'e1cddd3d70aec0bda315833b9d820215';
         $scope.uploadVideo = function (videoFile) {
             Vimeo.getUser(
@@ -149,6 +157,7 @@
                                     });
                                 }, function (response) {
                                     if (response.status > 0)
+                                        console.log(response);
                                         $scope.errorMsg = response.status + ': ' + response.data;
                                 }, function (evt) {
                                     videoFile.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));

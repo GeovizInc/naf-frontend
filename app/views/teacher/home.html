@@ -55,25 +55,17 @@
                             <th width="1%"></th>
                             <th>Name</th>
                             <th>Course</th>
+                            <th>Time</th>
                             <th width="1%"></th>
                         </tr>
-                        <tr>
+                        <tr ng-repeat="lecture in lectures">
                             <td><img src="http://placehold.it/100x75"/></td>
-                            <td>Java Lecture 3</td>
-                            <td>Java Introduction</td>
-                            <td><a target="_blank" href="https://zoom.us/j/3641214113" type="button" class="btn btn-default btn-xs">Start</a></td>
-                        </tr>
-                        <tr>
-                            <td><img src="http://placehold.it/100x75"/></td>
-                            <td>Java Lecture 2</td>
-                            <td>Java Introduction</td>
-                            <td><a href="#/lecture/1/upload" type="button" class="btn btn-default btn-xs">Upload</a></td>
-                        </tr>
-                        <tr>
-                            <td><img src="http://placehold.it/100x75"/></td>
-                            <td>Java Lecture 3</td>
-                            <td>Java Introduction</td>
-                            <td><a href="#/lecture/1" type="button" class="btn btn-default btn-xs">Watch</a></td>
+                            <td>{{lecture.name}}</td>
+                            <td><a href="#/course/{{lecture.course._id}}/view">{{lecture.course.name}}</a></td>
+                            <td>{{lecture.time}}</td>
+                            <td ng-if="lecture.vimeoLink"><a href="#/lecture/{{lecture._id}}" type="button" class="btn btn-default btn-xs">Watch</a></td>
+                            <td ng-if="lecture.zoomStartLink"><a target="_blank" href="{{lecture.zoomStartLink}}" type="button" class="btn btn-default btn-xs">Start</a><a href="#/lecture/{{lecture._id}}/upload" type="button" class="btn btn-default btn-xs">Upload</a></td>
+                            <!--<td ng-if="(lecture.time|date:'yyyy-MM-ddTHH:mm:ss') > (current|date:'yyyy-MM-ddTHH:mm:ss')"><a target="_blank" href="{{lecture.zoomStartLink}}" type="button" class="btn btn-default btn-xs">Start</a></td>-->
                         </tr>
                     </table>
                 </div><!-- /.box-body -->

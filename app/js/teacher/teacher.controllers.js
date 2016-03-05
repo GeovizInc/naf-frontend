@@ -24,6 +24,7 @@
         $scope.user = Auth._user;
         Teacher.getLecture({teacher_id: $routeParams.teacher_id}, function(response) {
             console.log(response);
+            $scope.lectures = response;
         }, function(error) {
             console.log(error);
         });
