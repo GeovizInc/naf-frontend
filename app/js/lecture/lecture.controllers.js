@@ -7,7 +7,7 @@
     angular.module('naf.lecture')
         .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', lectureStoreController])
         .controller('LectureController', ['$rootScope', '$scope', '$location', '$sce', '$routeParams', 'Course', 'Lecture', LectureController])
-        .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', uploadLecture]);
+        .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', 'Lecture', uploadLecture]);
 
     //LectureController
     function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash) {
@@ -115,7 +115,7 @@
 
     }
 
-    function uploadLecture($rootScope, $scope, $location, $timeout, $routeParams, Upload, Auth, Vimeo) {
+    function uploadLecture($rootScope, $scope, $location, $timeout, $routeParams, Upload, Auth, Vimeo, Lecture) {
         $scope.user = null ;
         if(Auth._user) {
             $scope.user = Auth._user;
@@ -170,7 +170,18 @@
                                             },
                                             function (response) {
                                                 var vimeoVideoId = getVimeoVideoIdByVideoUri(response.headers.location);
-                                                console.log(vimeoVideoId);
+                                                var lecture = {
+                                                    _id: $routeParams.lecture_id,
+                                                    zoomLink: '',
+                                                    vimeoLink: vimeoVideoId
+                                                };
+                                                Lecture.update(lecture, function(response){
+                                                    console.log(response);
+                                                    Flash.create('success', 'Lecture has been Uploaded!');
+                                                    $location.path('/teacher/' + $scope.user._id + '/home');
+                                                }, function(error){
+
+                                                })
                                             },
                                             function (error) {
 
