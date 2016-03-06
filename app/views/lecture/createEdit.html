@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             <label for="date">Date</label>
-                            <date-time-picker id="date" class="form-control" ng-model="lecture.time" placeholder="Date"></date-time-picker>
+                            <date-time-picker id="date" class="form-control" date-format="MM/DD/YYYY h:mm A" ng-model="lecture.time" placeholder="Date"></date-time-picker>
                         </div>
                         <div class="form-group">
                             <label for="intro">Introduction</label>
@@ -85,6 +85,7 @@
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
+                    <a href="#/lecture/{{}}/create" type="button" class="btn btn-success">Add Lecture</a>
                     <ul class="pagination pagination-sm no-margin pull-right">
                         <li><a href="#">&laquo;</a></li>
                         <li><a href="#">1</a></li>

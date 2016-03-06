@@ -7,7 +7,7 @@
     angular.module('naf.lecture')
         .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', lectureStoreController])
         .controller('LectureController', ['$rootScope', '$scope', '$location', '$sce', '$routeParams', 'Course', 'Lecture', LectureController])
-        .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', 'Lecture', uploadLecture]);
+        .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', 'Lecture', 'Flash', uploadLecture]);
 
     //LectureController
     function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash) {
@@ -56,10 +56,11 @@
             $scope.lecture = {
                 _id: lectureItem._id,
                 name: lectureItem.name,
-                teacher: lectureItem.teacher,
-                time: lectureItem.time,
+                teacher: lectureItem.teacher._id,
+                time: moment(new Date(lectureItem.time)).format('MM/DD/YYYY h:mm A'),
                 description: lectureItem.description
             };
+
         };
 
         reset();
@@ -115,7 +116,7 @@
 
     }
 
-    function uploadLecture($rootScope, $scope, $location, $timeout, $routeParams, Upload, Auth, Vimeo, Lecture) {
+    function uploadLecture($rootScope, $scope, $location, $timeout, $routeParams, Upload, Auth, Vimeo, Lecture, Flash) {
         $scope.user = null ;
         if(Auth._user) {
             $scope.user = Auth._user;
@@ -123,7 +124,6 @@
             Auth.logout();
             $location.path('/login');
         }
-
         var accessToken = 'e1cddd3d70aec0bda315833b9d820215';
         $scope.uploadVideo = function (videoFile) {
             Vimeo.getUser(
@@ -132,6 +132,7 @@
                     var userId = getVimeoUserIdByUserUri(data.uri);
                     var userQuota = data.upload_quota;
                     var fileSize = videoFile.size;
+                    console.log(!userQuota.quota.hd && !userQuota.quota.sd);
                     if (!userQuota.quota.hd && !userQuota.quota.sd) return false;
                     if (userQuota.space.free < fileSize) return false;
 
@@ -175,6 +176,7 @@
                                                     zoomLink: '',
                                                     vimeoLink: vimeoVideoId
                                                 };
+                                                console.log(lecture);
                                                 Lecture.update(lecture, function(response){
                                                     console.log(response);
                                                     Flash.create('success', 'Lecture has been Uploaded!');
