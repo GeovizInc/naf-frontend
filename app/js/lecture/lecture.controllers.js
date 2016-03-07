@@ -11,6 +11,7 @@
 
     //LectureController
     function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash) {
+        $scope.lecture = {};
         $scope.user = null ;
         if(Auth._user) {
             $scope.user = Auth._user;
@@ -18,6 +19,7 @@
             Auth.logout();
             $location.path('/login');
         }
+        $scope.courseId = $routeParams.course_id;
         Presenter.getTeachers({presenter_id: $scope.user._id}, function(response) {
             $scope.teachers = response;
         }, function(error) {
@@ -174,6 +176,7 @@
                                                 var lecture = {
                                                     _id: $routeParams.lecture_id,
                                                     zoomLink: '',
+                                                    zoomStartLink: '',
                                                     vimeoLink: vimeoVideoId
                                                 };
                                                 console.log(lecture);

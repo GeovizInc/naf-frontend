@@ -20,7 +20,6 @@
                 attributes = element.prop('attributes');
                 resetValue = false;
                 input = element.find('input');
-                console.log(attributes);
                 angular.forEach(attributes, function(e) {
                     if (e.name == 'ng-model') {
                         input.attr(e.name, e.value);
