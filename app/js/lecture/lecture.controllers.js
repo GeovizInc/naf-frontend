@@ -11,7 +11,6 @@
 
     //LectureController
     function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash) {
-        $scope.lecture = {};
         $scope.user = null ;
         if(Auth._user) {
             $scope.user = Auth._user;
@@ -33,6 +32,10 @@
             };
             $scope.lectures = Course.getLectures({course_id: $routeParams.course_id});
         }
+
+        $scope.reset = function(){
+            reset();
+        };
 
         $scope.createLecture = function() {
             Lecture.save($scope.lecture, function(response) {
@@ -78,6 +81,7 @@
             Lecture.get({lecture_id: lectureId}, function(response) {
                 var lecture = response;
                 lecture.hasVideo = (angular.isDefined(lecture.vimeoLink) && lecture.vimeoLink !== null && lecture.vimeoLink !== '');
+                if(lecture.hasVideo) lecture.vimeoLink = 'https://player.vimeo.com/video/' + lecture.vimeoLink + '?badge=0&autopause=0&player_id=0';
                 lecture.hasZoom = angular.isDefined(lecture.zoomLink);
                 lecture.vimeoLink = $sce.trustAsResourceUrl(lecture.vimeoLink);
                 $scope.lecture = lecture;
@@ -175,8 +179,6 @@
                                                 var vimeoVideoId = getVimeoVideoIdByVideoUri(response.headers.location);
                                                 var lecture = {
                                                     _id: $routeParams.lecture_id,
-                                                    zoomLink: '',
-                                                    zoomStartLink: '',
                                                     vimeoLink: vimeoVideoId
                                                 };
                                                 console.log(lecture);

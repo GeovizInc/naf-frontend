@@ -42,6 +42,7 @@
                     <div class="box-footer">
                         <button ng-if="!lecture._id" type="submit" class="btn btn-primary" ng-click="createLecture()">Create</button>
                         <button ng-if="lecture._id" type="submit" class="btn btn-primary" ng-click="updateLecture()">Update</button>
+                        <button type="reset" class="btn btn-warning pull-right" ng-click="reset()">Reset</button>
                     </div>
                 </form>
             </div>
@@ -85,7 +86,6 @@
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
-                    <a href="#/lecture/{{courseId}}/create" type="button" class="btn btn-success">Add Lecture</a>
                     <ul class="pagination pagination-sm no-margin pull-right">
                         <li><a href="#">&laquo;</a></li>
                         <li><a href="#">1</a></li>
