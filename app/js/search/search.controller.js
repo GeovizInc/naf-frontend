@@ -15,7 +15,7 @@
         function search() {
             var params = {};
             if($scope.school) {
-                params.presenterId = $scope.school._id
+                params.presenterId = $scope.school
             }
             if($scope.courseName) {
                 params.courseName = $scope.courseName;

@@ -94,7 +94,7 @@
                 options = element.find('option');
                 angular.forEach(attributes, function (e) {
                     if (e.name === 'default-option') {
-                        options[0].html(e.value);
+                        $(options[0]).html(e.value);
                     }
                 });
 
