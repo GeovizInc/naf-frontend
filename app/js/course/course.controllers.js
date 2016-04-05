@@ -67,13 +67,30 @@
             if(Auth._user && Auth._user._id == $scope.course.presenter._id) {
                 $scope.isPresenter = true;
             }
-            $scope.lectures = Course.getLectures({course_id: $scope.course._id});
+
+            getLectures();
         }, function(error) {
             Flash.create('danger', 'Can not get this course!');
-            $location.path('/search');
+            //$location.path('/search');
         });
 
+        $scope.getLecturePage = function (page,limit) {
+            getLectures({page:page, limit:limit});
+        };
 
+        function getLectures(params) {
+            if(!params) params = {};
+            params.course_id = $scope.course._id;
+            Course.getLectures(params,
+                function(result) {
+                    $scope.lectures = result.data;
+                    $scope.currentPage = result.currentPage;
+                    $scope.limit = result.limit;
+                    $scope.pageCount = result.pageCount;
+                }, function(error) {
+                    Flash.create('danger', 'Unable to get lectures');
+                });
+        }
 
     }
 

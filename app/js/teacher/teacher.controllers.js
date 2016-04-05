@@ -92,6 +92,9 @@
             if(Auth._user && Auth._user._id == $scope.teacher.presenter._id) {
                 $scope.isPresenter = true;
             }
+            Teacher.getCourses({teacher_id: $scope.teacher._id}, function(result) {
+                $scope.courses = result.data;
+            });
         }, function(error) {
             Flash.create('danger', 'Can not get this teacher!');
             $location.path('/search');

@@ -25,8 +25,7 @@
             getLectures: {
                 url: Config.api + '/course/:course_id/lectures',
                 method: 'GET',
-                params: {course_id: '@course_id'},
-                isArray: true
+                params: {course_id: '@course_id'}
             }
 
         });
