@@ -5,12 +5,12 @@
     'use strict';
 
     angular.module('naf.lecture')
-        .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', lectureStoreController])
+        .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', 'ngDialog', lectureStoreController])
         .controller('LectureController', ['$rootScope', '$scope', '$location', '$sce', '$routeParams', 'Course', 'Lecture', LectureController])
         .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', 'Lecture', 'Flash', uploadLecture]);
 
     //LectureController
-    function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash) {
+    function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash, ngDialog) {
         $scope.user = null ;
         if(Auth._user) {
             $scope.user = Auth._user;
@@ -66,6 +66,24 @@
                 description: lectureItem.description
             };
 
+        };
+
+        $scope.confirmRemove = function(lectureItem) {
+            $scope.lectureToBeRemove = lectureItem;
+            ngDialog.open({
+                template: 'views/lecture/delete.html',
+                className: 'ngdialog-theme-default',
+                scope: $scope
+            });
+        };
+
+        $scope.removeLecture = function() {
+          Lecture.remove($scope.lectureToBeRemove, function(resopnse) {
+              Flash.create('success', 'Lecture has been Removed!');
+              reset();
+          }, function(error) {
+              Flash.create('danger', error.data);
+          })
         };
 
         reset();

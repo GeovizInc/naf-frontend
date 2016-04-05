@@ -6,10 +6,14 @@
 describe('service', function() {
 
     // load modules
-    beforeEach(module('naf.course'));
+    var AuthController,
+        scope;
+    beforeEach(module('naf'));
+    beforeEach(module('naf.auth'));
 
     // Test service availability
-    it('check the existence of Phone factory', inject(function(Auth) {
-        expect(Auth).toBeDefined();
+    it('check the existence of register method of Auth service', inject(function(Auth) {
+
+        expect(Auth.register).toBeDefined();
     }));
 });

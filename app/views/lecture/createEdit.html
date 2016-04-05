@@ -73,6 +73,7 @@
                             <th>Name</th>
                             <th>Teacher</th>
                             <th>Date</th>
+                            <th>Duration</th>
                             <th width="1%"></th>
                         </tr>
                         <tr ng-repeat="lectureItem in lectures">
@@ -80,7 +81,9 @@
                             <td><a href="#/lecture/{{lectureItem._id}}">{{lectureItem.name}}</a></td>
                             <td class="teacher"><a href="#/teacher/{{lectureItem.teacher._id}}">{{lectureItem.teacher.name}}</a></td>
                             <td>{{lectureItem.time | date:'medium'}}</td>
+                            <td>40 Minutes</td>
                             <td><a href="" type="button" class="btn btn-default btn-s" ng-click="loadLectureInfo(lectureItem)">Edit</a></td>
+                            <td><a href="" type="button" class="btn btn-default btn-s" ng-click="confirmRemove(lectureItem)">Remove</a></td>
                         </tr>
                     </table>
                 </div><!-- /.box-body -->

@@ -16,7 +16,12 @@
             update: {
                 url: Config.api + '/lecture',
                 method: 'PUT'
-            }
+            },
+            //delete Lecture
+            remove: {
+                url: Config.api + '/lecture/delete',
+                method: 'POST'
+            },
         });
     }
 
