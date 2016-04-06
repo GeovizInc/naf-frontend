@@ -60,6 +60,7 @@
 
     function presenterEditController($rootScope, $scope, $location, $log, $routeParams, Auth, Presenter, Flash) {
         $scope.user = null;
+        $scope.showZoominfo = false;
         //check current user
         if(!Auth._user) {
             $location.path('/login');
