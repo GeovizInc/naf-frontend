@@ -12,17 +12,32 @@
         $scope.school = false;
         $scope.schools = Presenter.list({});
         $scope.search = search;
-        function search() {
-            var params = {};
+
+        search();
+
+        function search(params) {
+            if (!params) params = {};
             if($scope.school) {
-                params.presenterId = $scope.school._id
+                params.presenterId = $scope.school
             }
             if($scope.courseName) {
                 params.courseName = $scope.courseName;
             }
-            $scope.courses = Search.search(params);
+            Search.search(params, function(result) {
+                $scope.courses = result.data;
+                $scope.currentPage = result.currentPage;
+                $scope.limit = result.limit;
+                $scope.pageCount = result.pageCount;
+            });
         }
-        search();
+
+        $scope.getSearchPage = function(page, limit) {
+            search({page:page, limit:limit});
+        };
+
+        $scope.getNumber = function(num) {
+            return new Array(num);
+        };
     }
 
 })();

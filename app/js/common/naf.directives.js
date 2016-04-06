@@ -21,15 +21,18 @@
                 resetValue = false;
                 input = element.find('input');
                 angular.forEach(attributes, function(e) {
-                    if (e.name === 'class') {
-                        element.removeAttr(e.name);
+                    if (e.name == 'ng-model') {
                         input.attr(e.name, e.value);
                     }
-                    if (e.name === 'placeholder') {
-                        element.removeAttr(e.name);
+                    if (e.name == 'class') {
                         input.attr(e.name, e.value);
+                        element.removeClass(e.value);
                     }
-                    if (e.name === 'date-format') {
+                    if (e.name == 'placeholder') {
+                        input.attr(e.name, e.value);
+                        element.removeAttr(e.name);
+                    }
+                    if (e.name == 'date-format') {
                         return dateFormat = e.value;
                     }
                 });
@@ -86,12 +89,12 @@
             replace: true,
             template: '<select style="width: 100%;"><option value="">...</option></select>',
             link: function ($scope, element, attr) {
-                var attributes, option;
+                var attributes, options;
                 attributes = element.prop('attributes');
-                option = element.find('option');
+                options = element.find('option');
                 angular.forEach(attributes, function (e) {
                     if (e.name === 'default-option') {
-                        option.html(e.value);
+                        $(options[0]).html(e.value);
                     }
                 });
 
@@ -102,6 +105,17 @@
 
                 var refreshSelect = function () {
                     if (!element.select2Initialized) return;
+                    options = element.find('option');
+                    var selectedVal = eval('$scope.' + attr.ngModel);
+                    //element.attr('value', selectedVal);
+
+                    for(var i = 0; i < options.size(); i++){
+                        if($(options[i]).val() == selectedVal){
+                            $(options[i]).attr('selected', 'selected');
+                        }else{
+                            $(options[i]).removeAttr('selected');
+                        }
+                    }
                     $timeout(function () {
                         element.trigger('change');
                     });

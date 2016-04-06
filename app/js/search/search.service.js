@@ -8,8 +8,7 @@
         return $resource(Config.api + '/search', {}, {
             search: {
                 url: Config.api + '/search',
-                method: 'GET',
-                isArray: true
+                method: 'GET'
             }
         });
     }

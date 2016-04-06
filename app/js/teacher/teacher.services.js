@@ -24,10 +24,9 @@
             },
             // URL error? get lecture list of the teacher
             getLecture: {
-                url: Config.api + '/teacher/:teacher_id/lecture',
+                url: Config.api + '/teacher/:teacher_id/lectures',
                 method: 'GET',
                 params: {teacher_id: '@teacher_id'},
-                isArray: true
             }
         })
     }

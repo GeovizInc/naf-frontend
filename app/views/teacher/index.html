@@ -35,7 +35,7 @@
                             <td><a href="#/teacher/{{teacher._id}}"><img src="http://placehold.it/50x50"/></a></td>
                             <td><a href="#/teacher/{{teacher._id}}">{{teacher.name}}</a></td>
                             <td>{{teacher.email}}</td>
-                            <td><a href="#/teacher/{{teacher._id}}/edit" type="button" class="btn btn-default btn-xs">Edit</a></td>
+                            <td><a href="#/teacher/{{teacher._id}}/edit" type="button" class="btn btn-default btn-s">Edit</a></td>
                         </tr>
                     </table>
                 </div><!-- /.box-body -->
@@ -43,11 +43,15 @@
                 <div class="box-footer">
                     <a href="#/teacher/create" type="button" class="btn btn-success">Add Teacher</a>
                     <ul class="pagination pagination-sm no-margin pull-right">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">&raquo;</a></li>
+                        <li ng-if="currentPage > 1">
+                            <a ng-click="getTeacherPage(currentPage-1,limit)">Previous</a>
+                        </li>
+                        <li ng-repeat="i in getNumber(pageCount) track by $index" ng-click="getTeacherPage($index + 1, limit)">
+                            <a >{{$index + 1}}</a>
+                        </li>
+                        <li ng-if="currentPage < pageCount">
+                            <a ng-click="getTeacherPage(currentPage+1,limit)">Next</a>
+                        </li>
                     </ul>
                 </div>
             </div><!-- /.box -->

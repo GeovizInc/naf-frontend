@@ -4,8 +4,9 @@ module.exports = function(config){
     basePath : '',
 
     files : [
-      'app/bower_components/jquery/dist/jquery.min.js',
+
       'app/bower_components/angular/angular.js',
+      'app/bower_components/jquery/dist/jquery.min.js',
       'app/bower_components/bootstrap/dist/js/bootstrap.min.js',
       'app/bower_components/angular-flash-alert/dist/angular-flash.js',
       'app/bower_components/angular-route/angular-route.js',
@@ -18,10 +19,21 @@ module.exports = function(config){
       'app/bower_components/admin-lte/dist/js/app.min.js',
       'app/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
       'app/bower_components/select2/dist/js/select2.min.js',
-      'app/js/**/*.js',
-      /*'app/js/course/course.controllers.js',
-       'app/js/course/course.module.js',
-       'app/js/course/course.services.js',*/
+      'app/bower_components/ngDialog/js/ngDialog.js',
+
+      'app/js/app.module.js',
+      'app/js/app.config.js',
+      'app/js/auth/auth.module.js',
+      'app/js/auth/auth.controllers.js',
+      'app/js/auth/auth.services.js',
+      'app/js/course/course.module.js',
+      'app/js/course/course.controllers.js',
+      'app/js/course/course.services.js',
+      'app/js/presenter/presenter.module.js',
+      'app/js/teacher/teacher.module.js',
+      'app/js/attendee/attendee.module.js',
+      'app/js/search/search.module.js',
+      'app/js/lecture/lecture.module.js',
       'test/ServiceAuthTest.js'
     ],
 

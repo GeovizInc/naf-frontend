@@ -26,14 +26,12 @@
                 url: Config.api + '/presenter/:presenter_id/teachers',
                 method: 'GET',
                 params: {presenter_id: '@presenter_id'},
-                isArray: true
             },
             // get courses list of the presenter
             getCourses: {
                 url: Config.api + '/presenter/:presenter_id/courses',
                 method: 'GET',
-                params: {presenter_id: '@presenter_id'},
-                isArray: true
+                params: {presenter_id: '@presenter_id'}
             },
             //get upcoming lectures list of the presenter
             getLectures: {

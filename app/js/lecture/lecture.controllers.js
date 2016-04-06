@@ -5,12 +5,12 @@
     'use strict';
 
     angular.module('naf.lecture')
-        .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', lectureStoreController])
+        .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', 'ngDialog', lectureStoreController])
         .controller('LectureController', ['$rootScope', '$scope', '$location', '$sce', '$routeParams', 'Course', 'Lecture', LectureController])
-        .controller('UploadLectureController', ['$scope', '$timeout', 'Upload', 'Vimeo', uploadLecture]);
+        .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', 'Lecture', 'Flash', uploadLecture]);
 
     //LectureController
-    function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash) {
+    function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash, ngDialog) {
         $scope.user = null ;
         if(Auth._user) {
             $scope.user = Auth._user;
@@ -18,8 +18,10 @@
             Auth.logout();
             $location.path('/login');
         }
-        Presenter.getTeachers({presenter_id: $scope.user._id}, function(response) {
-            $scope.teachers = response;
+        $scope.courseId = $routeParams.course_id;
+        Presenter.getTeachers({presenter_id: $scope.user._id, getAll: true}, function(response) {
+            $scope.teachers = response.data;
+
         }, function(error) {
             console.log(error);
         });
@@ -29,8 +31,31 @@
             $scope.lecture = {
                 course: $routeParams.course_id
             };
-            $scope.lectures = Course.getLectures({course_id: $routeParams.course_id});
+            getLecturePage();
         }
+
+        function getLecturePage(params) {
+            if(!params) params = {}
+            params.course_id = $routeParams.course_id;
+            Course.getLectures(params, function(result) {
+                $scope.lectures = result.data;
+                $scope.currentPage = result.currentPage;
+                $scope.limit = result.limit;
+                $scope.pageCount = result.pageCount;
+            });
+        }
+
+        $scope.getLecturePage = function (page,limit) {
+            getLecturePage({page:page, limit:limit});
+        };
+
+        $scope.getNumber = function(num) {
+            return new Array(num);
+        };
+
+        $scope.reset = function(){
+            reset();
+        };
 
         $scope.createLecture = function() {
             Lecture.save($scope.lecture, function(response) {
@@ -56,10 +81,29 @@
             $scope.lecture = {
                 _id: lectureItem._id,
                 name: lectureItem.name,
-                teacher: lectureItem.teacher,
-                time: lectureItem.time,
+                teacher: lectureItem.teacher._id,
+                time: moment(new Date(lectureItem.time)).format('MM/DD/YYYY h:mm A'),
                 description: lectureItem.description
             };
+
+        };
+
+        $scope.confirmRemove = function(lectureItem) {
+            $scope.lectureToBeRemove = lectureItem;
+            ngDialog.open({
+                template: 'views/lecture/delete.html',
+                className: 'ngdialog-theme-default',
+                scope: $scope
+            });
+        };
+
+        $scope.removeLecture = function() {
+          Lecture.remove($scope.lectureToBeRemove, function(resopnse) {
+              Flash.create('success', 'Lecture has been Removed!');
+              reset();
+          }, function(error) {
+              Flash.create('danger', error.data);
+          })
         };
 
         reset();
@@ -75,6 +119,7 @@
             Lecture.get({lecture_id: lectureId}, function(response) {
                 var lecture = response;
                 lecture.hasVideo = (angular.isDefined(lecture.vimeoLink) && lecture.vimeoLink !== null && lecture.vimeoLink !== '');
+                if(lecture.hasVideo) lecture.vimeoLink = 'https://player.vimeo.com/video/' + lecture.vimeoLink + '?badge=0&autopause=0&player_id=0';
                 lecture.hasZoom = angular.isDefined(lecture.zoomLink);
                 lecture.vimeoLink = $sce.trustAsResourceUrl(lecture.vimeoLink);
                 $scope.lecture = lecture;
@@ -84,7 +129,7 @@
 
         function loadLectureList(courseId) {
              Course.getLectures({course_id: courseId}, function(response) {
-                 var lectures = response;
+                 var lectures = response.data;
                  var lecturesCount = 0;
                  $scope.relatedLectures = [];
                  if(lectures.length < relatedLecturesSize) {
@@ -115,7 +160,14 @@
 
     }
 
-    function uploadLecture($scope, $timeout, Upload, Vimeo) {
+    function uploadLecture($rootScope, $scope, $location, $timeout, $routeParams, Upload, Auth, Vimeo, Lecture, Flash) {
+        $scope.user = null ;
+        if(Auth._user) {
+            $scope.user = Auth._user;
+        } else {
+            Auth.logout();
+            $location.path('/login');
+        }
         var accessToken = 'e1cddd3d70aec0bda315833b9d820215';
         $scope.uploadVideo = function (videoFile) {
             Vimeo.getUser(
@@ -124,6 +176,7 @@
                     var userId = getVimeoUserIdByUserUri(data.uri);
                     var userQuota = data.upload_quota;
                     var fileSize = videoFile.size;
+                    console.log(!userQuota.quota.hd && !userQuota.quota.sd);
                     if (!userQuota.quota.hd && !userQuota.quota.sd) return false;
                     if (userQuota.space.free < fileSize) return false;
 
@@ -161,7 +214,19 @@
                                                 access_token: accessToken
                                             },
                                             function (response) {
-                                                console.log(response.headers.location);
+                                                var vimeoVideoId = getVimeoVideoIdByVideoUri(response.headers.location);
+                                                var lecture = {
+                                                    _id: $routeParams.lecture_id,
+                                                    vimeoLink: vimeoVideoId
+                                                };
+                                                console.log(lecture);
+                                                Lecture.update(lecture, function(response){
+                                                    console.log(response);
+                                                    Flash.create('success', 'Lecture has been Uploaded!');
+                                                    $location.path('/teacher/' + $scope.user._id + '/home');
+                                                }, function(error){
+
+                                                })
                                             },
                                             function (error) {
 
@@ -205,6 +270,10 @@
 
     function getVimeoUserIdByUserUri(userUri) {
         return userUri.substring('/users/'.length);
+    }
+
+    function getVimeoVideoIdByVideoUri(videoUri) {
+        return videoUri.substring('/videos/'.length);
     }
 
 })();
