@@ -12,12 +12,18 @@
     //LectureController
     function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash, ngDialog) {
         $scope.user = null ;
+        $scope.availableLecture = 0;
         if(Auth._user) {
             $scope.user = Auth._user;
         } else {
             Auth.logout();
             $location.path('/login');
         }
+        Presenter.getLectureLimit(function(response) {
+            $scope.availableLecture = response.totalLectureLimit - response.currentLecture;
+        }, function(error) {
+            console.log(error);
+        })
         $scope.courseId = $routeParams.course_id;
         Presenter.getTeachers({presenter_id: $scope.user._id, getAll: true}, function(response) {
             $scope.teachers = response.data;

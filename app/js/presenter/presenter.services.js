@@ -44,6 +44,10 @@
                 url: Config.api + '/presenter',
                 method: 'GET',
                 isArray: true
+            },
+            getLectureLimit: {
+                url: Config.api + '/presenter/lectureslimit',
+                method: 'GET',
             }
         });
     }
