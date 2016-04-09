@@ -64,6 +64,7 @@
         };
 
         $scope.createLecture = function() {
+            $scope.lecture.time = new Date($scope.lecture.time);
             Lecture.save($scope.lecture, function(response) {
                 Flash.create('success', 'Lecture has been created!');
                 reset();
@@ -73,6 +74,7 @@
         };
 
         $scope.updateLecture = function() {
+            $scope.lecture.time = new Date($scope.lecture.time);
             Lecture.update($scope.lecture, function(response) {
                 Flash.create('success', 'Lecture updated');
                 reset();
