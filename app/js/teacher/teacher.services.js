@@ -27,6 +27,10 @@
                 url: Config.api + '/teacher/:teacher_id/lectures',
                 method: 'GET',
                 params: {teacher_id: '@teacher_id'},
+            },
+            getVimeoCred: {
+                url: Config.api + '/teacher/getVimeoCred',
+                method: 'GET'
             }
         })
     }
