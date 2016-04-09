@@ -47,7 +47,19 @@
             },
             getLectureLimit: {
                 url: Config.api + '/presenter/lectureslimit',
-                method: 'GET',
+                method: 'GET'
+            },
+            getCredentials: {
+                url: Config.api + '/presenter/credentials',
+                method: 'GET'
+            },
+            updateZoomCred: {
+                url: Config.api + '/presenter/zoom',
+                method: 'PUT'
+            },
+            updateVimeoCred: {
+                url: Config.api + '/presenter/vimeo',
+                method: 'PUT'
             }
         });
     }

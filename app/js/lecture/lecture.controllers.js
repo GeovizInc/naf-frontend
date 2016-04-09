@@ -7,7 +7,7 @@
     angular.module('naf.lecture')
         .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', 'ngDialog', lectureStoreController])
         .controller('LectureController', ['$rootScope', '$scope', '$location', '$sce', '$routeParams', 'Course', 'Lecture', LectureController])
-        .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', 'Lecture', 'Flash', uploadLecture]);
+        .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', 'Lecture', 'Flash', 'Teacher', uploadLecture]);
 
     //LectureController
     function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash, ngDialog) {
@@ -76,9 +76,11 @@
         $scope.updateLecture = function() {
             $scope.lecture.time = new Date($scope.lecture.time);
             Lecture.update($scope.lecture, function(response) {
+                console.log(response);
                 Flash.create('success', 'Lecture updated');
                 reset();
             }, function(error) {
+                console.log(error);
                 Flash.create('danger', 'Unable to save lecture');
                 console.error(error);
             });
@@ -168,7 +170,7 @@
 
     }
 
-    function uploadLecture($rootScope, $scope, $location, $timeout, $routeParams, Upload, Auth, Vimeo, Lecture, Flash) {
+    function uploadLecture($rootScope, $scope, $location, $timeout, $routeParams, Upload, Auth, Vimeo, Lecture, Flash, Teacher) {
         $scope.user = null ;
         if(Auth._user) {
             $scope.user = Auth._user;
@@ -176,7 +178,12 @@
             Auth.logout();
             $location.path('/login');
         }
-        var accessToken = 'e1cddd3d70aec0bda315833b9d820215';
+        var accessToken = ''; //''e1cddd3d70aec0bda315833b9d820215';
+
+        Teacher.getVimeoCred(function(response) {
+            accessToken = response.accessToken;
+        });
+
         $scope.uploadVideo = function (videoFile) {
             Vimeo.getUser(
                 {access_token: accessToken},
@@ -233,7 +240,7 @@
                                                     Flash.create('success', 'Lecture has been Uploaded!');
                                                     $location.path('/teacher/' + $scope.user._id + '/home');
                                                 }, function(error){
-
+                                                    console.log(error);
                                                 })
                                             },
                                             function (error) {
