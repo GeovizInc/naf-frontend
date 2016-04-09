@@ -61,13 +61,14 @@
     function presenterEditController($rootScope, $scope, $location, $log, $routeParams, Auth, Presenter, Flash) {
         $scope.user = null;
         $scope.showZoominfo = false;
+        $scope.showViemoInfo = false;
         //check current user
         if(!Auth._user) {
             $location.path('/login');
         }
         Presenter.get({presenter_id: Auth._user._id},
             function(response) {
-                console.log(response);
+                //console.log(response);
                 $scope.user = response;
             }, function(error) {
                 Flash.create('danger','There is no such Presenter !');
@@ -116,6 +117,44 @@
                     });
         };
 
+        $scope.toggleZoomCred = function() {
+            $scope.showZoominfo = !$scope.showZoominfo;
+            if(!$scope.showZoominfo) return;
+            Presenter.getCredentials({}, function(response) {
+                $scope.zoomApiKey = response.zoom.apiKey;
+                $scope.zoomAccessToken = response.zoom.accessToken;
+                $scope.zoomApiSecret = response.zoom.apiSecret;
+                $scope.zoomHostId = response.zoom.hostId;
+            });
+        };
+
+        $scope.updateZoomCred = function() {
+            var params = {
+                apiKey: $scope.zoomApiKey,
+                apiSecret: $scope.zoomApiSecret,
+                accessToken: $scope.zoomAccessToken,
+                hostId: $scope.zoomHostId
+            };
+            Presenter.updateZoomCred(params, function(response) {
+                if(response.error) Flash.create('danger', 'Unable to update Zoom credential');
+                else Flash.create('success', 'Zoom credential updated');
+            });
+        };
+
+        $scope.toggleVimeoCred = function() {
+            $scope.showViemoInfo = !$scope.showViemoInfo;
+            if(!$scope.showViemoInfo) return;
+            Presenter.getCredentials({}, function(response) {
+                $scope.vimeoAccessToken = response.vimeo.accessToken;
+            });
+        };
+
+        $scope.updateVimeoCred = function() {
+            Presenter.updateVimeoCred({accessToken: $scope.vimeoAccessToken}, function(response) {
+                if(response.error) Flash.create('danger', 'Unable to update Zoom credential');
+                else Flash.create('success', 'Zoom credential updated');
+            });
+        };
 
         //list course
     }

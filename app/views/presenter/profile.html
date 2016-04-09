@@ -74,32 +74,55 @@
         </div>
         <div class="col-md-8">
             <div class="box box-default">
-                <div class="box-header with-border pointer" ng-click=" showZoominfo = !showZoominfo">
+                <div class="box-header with-border pointer" ng-click="toggleZoomCred()">
                     <h3 class="box-title">Zoom Information</h3>
                 </div>
                 <form role="form" ng-show="showZoominfo" >
                     <div class="box-body">
                         <div class="form-group">
                             <label for="apiKey">Api Key</label>
-                            <input type="text" class="form-control" id="apiKey" placeholder="Api Key" ng-model="apiKey">
+                            <input type="text" class="form-control" id="apiKey" placeholder="Api Key" ng-model="zoomApiKey">
                         </div>
                         <div class="form-group">
                             <label for="apiSecret">Api Secret</label>
-                            <input type="text" class="form-control" id="apiSecret" placeholder="Api Secret" ng-model="apiSecret">
+                            <input type="text" class="form-control" id="apiSecret" placeholder="Api Secret" ng-model="zoomApiSecret">
                         </div>
                         <div class="form-group">
                             <label for="accessToken">Access Token</label>
-                            <input type="text" class="form-control" id="accessToken" placeholder="Access Token" ng-model="accessToken">
+                            <input type="text" class="form-control" id="accessToken" placeholder="Access Token" ng-model="zoomAccessToken">
                         </div>
                         <div class="form-group">
                             <label for="hostId">Host ID</label>
-                            <input type="text" class="form-control" id="hostId" placeholder="Host ID" ng-model="hostId">
+                            <input type="text" class="form-control" id="hostId" placeholder="Host ID" ng-model="zoomHostId">
                         </div>
                     </div>
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary" ng-click="changePassword()">Submit</button>
+                        <button type="submit" class="btn btn-primary" ng-click="updateZoomCred()">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+
+        </div>
+
+        <div class="col-md-8">
+            <div class="box box-default">
+                <div class="box-header with-border pointer" ng-click="toggleVimeoCred()">
+                    <h3 class="box-title">Vimeo Information</h3>
+                </div>
+                <form role="form" ng-show="showViemoInfo" >
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="vimeo-access-token">Access Token</label>
+                            <input type="text" class="form-control" id="vimeo-access-token" placeholder="Access Token" ng-model="vimeoAccessToken">
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary" ng-click="updateVimeoCred()">Submit</button>
                     </div>
                 </form>
             </div>
