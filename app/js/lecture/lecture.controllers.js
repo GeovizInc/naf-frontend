@@ -130,7 +130,9 @@
             Auth.logout();
             $location.path('/login');
         }
-        var accessToken = 'e1cddd3d70aec0bda315833b9d820215';
+
+        var accessToken = 'c1a9621fabb35d6b8541c0966090699f';
+        //var accessToken = 'e1cddd3d70aec0bda315833b9d820215';
         $scope.uploadVideo = function (videoFile) {
             Vimeo.getUser(
                 {access_token: accessToken},
@@ -138,7 +140,8 @@
                     var userId = getVimeoUserIdByUserUri(data.uri);
                     var userQuota = data.upload_quota;
                     var fileSize = videoFile.size;
-                    console.log(!userQuota.quota.hd && !userQuota.quota.sd);
+                    console.log(userQuota.quota.hd);
+                    console.log(userQuota.quota.sd);
                     if (!userQuota.quota.hd && !userQuota.quota.sd) return false;
                     if (userQuota.space.free < fileSize) return false;
 
