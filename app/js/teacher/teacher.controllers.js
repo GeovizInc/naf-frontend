@@ -23,18 +23,33 @@
         }
         Teacher.get({'teacher_id':$routeParams.teacher_id}, function(response) {
             $scope.teacher = response;
+            getLectures();
         }, function(error) {
             console.log(error);
         });
         $scope.user = Auth._user;
-        Teacher.getLecture({teacher_id: $routeParams.teacher_id}, function(response) {
-            console.log(response);
-            $scope.lectures = response;
-            console.log(response);
-            $scope.lectures = response;
-        }, function(error) {
-            console.log(error);
-        });
+
+        $scope.getLecturePage = function (page,limit) {
+            getLectures({page:page, limit:limit});
+        };
+
+        function getLectures(params) {
+            if(!params) params = {};
+            params.teacher_id = $scope.teacher._id;
+            Teacher.getLecture(params,
+                function(result) {
+                    $scope.lectures = result.data;
+                    $scope.currentPage = result.currentPage;
+                    $scope.limit = result.limit;
+                    $scope.pageCount = result.pageCount;
+                }, function(error) {
+                    Flash.create('danger', 'Unable to get lectures');
+                });
+        }
+        $scope.getNumber = function(num) {
+            return new Array(num);
+        };
+
     }
 
     //TeacherStoreController
@@ -81,13 +96,31 @@
             $location.path('/Search');
         }
         $scope.user = Auth._user;
-        console.log($scope.user);
-        Presenter.getTeachers({presenter_id: $scope.user._id}, function(response) {
-            console.log(response);
-            $scope.teachers = response;
-        }, function(error) {
-            console.log(error);
-        });
+        //console.log($scope.user);
+        getTeachers();
+
+        $scope.getTeacherPage = function(page, limit) {
+            getTeachers({page: page, limit: limit})
+        };
+
+        function getTeachers(params) {
+            if(!params) params = {};
+            params.presenter_id = $scope.user._id;
+            Presenter.getTeachers(params,
+                function(result) {
+                    $scope.teachers = result.data;
+                    $scope.currentPage = result.currentPage;
+                    $scope.limit = result.limit;
+                    $scope.pageCount = result.pageCount;
+                }, function(error) {
+                    Flash.create('danger', 'Unable to get teachers');
+                });
+        }
+
+        $scope.getNumber = function(num) {
+            return new Array(num);
+        };
+
     }
 
 
@@ -101,10 +134,34 @@
             if(Auth._user && Auth._user._id == $scope.teacher.presenter._id) {
                 $scope.isPresenter = true;
             }
+            getCourses();
         }, function(error) {
             Flash.create('danger', 'Can not get this teacher!');
             $location.path('/search');
         });
+
+        $scope.getCoursePage = function (page,limit) {
+            getCourses({page:page, limit:limit});
+        };
+
+        function getCourses(params) {
+            if(!params) params = {};
+            params.teacher_id = $scope.teacher._id;
+            Teacher.getCourses(params,
+                function(result) {
+                    //console.log(result);
+                    $scope.courses = result.data;
+                    $scope.currentPage = result.currentPage;
+                    $scope.limit = result.limit;
+                    $scope.pageCount = result.pageCount;
+                }, function(error) {
+                    Flash.create('danger', 'Unable to get courses');
+                });
+        }
+
+        $scope.getNumber = function(num) {
+            return new Array(num);
+        };
     }
 
     //TeacherUpdateController

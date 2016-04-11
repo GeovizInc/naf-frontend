@@ -55,7 +55,7 @@
         <div class="col-md-9">
             <div class="box box-default">
                 <div class="box-header">
-                    <h3 class="box-title">Lectures</h3>
+                    <h3 class="box-title">Lectures (Remain Available Lecture: {{availableLecture}})</h3>
                     <!--<div class="box-tools">
                         <div class="input-group" style="width: 150px;">
                             <input type="text" name="table_search" class="form-control input-sm pull-right"
@@ -73,6 +73,7 @@
                             <th>Name</th>
                             <th>Teacher</th>
                             <th>Date</th>
+                            <th>Duration</th>
                             <th width="1%"></th>
                         </tr>
                         <tr ng-repeat="lectureItem in lectures">
@@ -80,18 +81,24 @@
                             <td><a href="#/lecture/{{lectureItem._id}}">{{lectureItem.name}}</a></td>
                             <td class="teacher"><a href="#/teacher/{{lectureItem.teacher._id}}">{{lectureItem.teacher.name}}</a></td>
                             <td>{{lectureItem.time | date:'medium'}}</td>
+                            <td>40 Minutes</td>
                             <td><a href="" type="button" class="btn btn-default btn-s" ng-click="loadLectureInfo(lectureItem)">Edit</a></td>
+                            <td><a href="" type="button" class="btn btn-default btn-s" ng-click="confirmRemove(lectureItem)">Remove</a></td>
                         </tr>
                     </table>
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
                     <ul class="pagination pagination-sm no-margin pull-right">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">&raquo;</a></li>
+                        <li ng-if="currentPage > 1">
+                            <a ng-click="getLecturePage(currentPage-1,limit)">Previous</a>
+                        </li>
+                        <li ng-repeat="i in getNumber(pageCount) track by $index" ng-click="getLecturePage($index + 1, limit)">
+                            <a >{{$index + 1}}</a>
+                        </li>
+                        <li ng-if="currentPage < pageCount">
+                            <a ng-click="getLecturePage(currentPage+1,limit)">Next</a>
+                        </li>
                     </ul>
                 </div>
             </div><!-- /.box -->

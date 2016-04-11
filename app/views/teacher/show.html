@@ -51,63 +51,17 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <!-- Post -->
-                    <div class="post">
+                    <div class="post" ng-repeat="course in courses">
                         <div class="course-block">
-                            <a href="#/course/1/view"><img class="img-bordered" src="http://placehold.it/200x150"></a>
+                            <a href="#/course/{{course._id}}/view"><img class="img-bordered" src="http://placehold.it/200x150"></a>
                             <span class='course-name'>
-                                <a href="#/course/1/view">Java Introduction</a>
+                                <a href="#/course/{{course._id}}/view">{{course.name}}</a>
                             </span>
                             <!--<span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>-->
-                            <span class='info'><b>Updated at:</b>3 days ago</span>
+                            <span class='info'><b>Updated at:</b>{{course.updatedAt | date:'medium'}}</span>
                             <!--<span class='info'><b>Lecture:</b>5</span>-->
                             <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
-                            </p>
-                        </div><!-- /.user-block -->
-
-                    </div><!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post">
-                        <div class="course-block">
-                            <a href="#/course/1/view"><img class="img-bordered" src="http://placehold.it/200x150"></a>
-                            <span class='course-name'>
-                                <a href="#/course/1/view">Project Management</a>
-                            </span>
-                            <!--<span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>-->
-                            <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <!--<span class='info'><b>Lecture:</b>5</span>-->
-                            <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
-                            </p>
-                        </div><!-- /.user-block -->
-
-                    </div><!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post">
-                        <div class="course-block">
-                            <a href="#/course/1/view"><img class="img-bordered" src="http://placehold.it/200x150"></a>
-                            <span class='course-name'>
-                                <a href="#/course/1/view">Algorithm Introduction</a>
-                            </span>
-                            <!--<span class='info'><b>Teacher:</b><a href="">Liang Guo</a><a href="">Jiadong Hu</a></span>-->
-                            <span class='info'><b>Updated at:</b>3 days ago</span>
-                            <!--<span class='info'><b>Lecture:</b>5</span>-->
-                            <p class="description">
-                                Lorem ipsum represents a long-held tradition for designers,
-                                typographers and the like. Some people hate it and argue for
-                                its demise, but others ignore the hate as they create awesome
-                                tools to help create filler text for everyone from bacon lovers
-                                to Charlie Sheen fans.
+                               {{course.description}}
                             </p>
                         </div><!-- /.user-block -->
 
@@ -116,11 +70,15 @@
 
                 <div class="box-footer">
                     <ul class="pagination pagination-sm no-margin pull-right">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">&raquo;</a></li>
+                        <li ng-if="currentPage > 1">
+                            <a ng-click="getCoursePage(currentPage-1,limit)">Previous</a>
+                        </li>
+                        <li ng-repeat="i in getNumber(pageCount) track by $index" ng-click="getCoursePage($index + 1, limit)">
+                            <a >{{$index + 1}}</a>
+                        </li>
+                        <li ng-if="currentPage < pageCount">
+                            <a ng-click="getCoursePage(currentPage+1,limit)">Next</a>
+                        </li>
                     </ul>
                 </div>
             </div><!-- /.box -->

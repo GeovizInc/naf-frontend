@@ -21,14 +21,16 @@
                 url: Config.api + '/teacher/:teacher_id/courses',
                 method: 'GET',
                 params: {teacher_id: '@teacher_id'},
-                isArray: true
             },
             // URL error? get lecture list of the teacher
             getLecture: {
                 url: Config.api + '/teacher/:teacher_id/lectures',
                 method: 'GET',
                 params: {teacher_id: '@teacher_id'},
-                isArray: true
+            },
+            getVimeoCred: {
+                url: Config.api + '/teacher/getVimeoCred',
+                method: 'GET'
             }
         })
     }

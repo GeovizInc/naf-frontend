@@ -5,22 +5,29 @@
     'use strict';
 
     angular.module('naf.lecture')
-        .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', lectureStoreController])
+        .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', 'ngDialog', lectureStoreController])
         .controller('LectureController', ['$rootScope', '$scope', '$location', '$sce', '$routeParams', 'Course', 'Lecture', LectureController])
-        .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', 'Lecture', 'Flash', uploadLecture]);
+        .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', 'Lecture', 'Flash', 'Teacher', uploadLecture]);
 
     //LectureController
-    function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash) {
+    function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash, ngDialog) {
         $scope.user = null ;
+        $scope.availableLecture = 0;
         if(Auth._user) {
             $scope.user = Auth._user;
         } else {
             Auth.logout();
             $location.path('/login');
         }
+        Presenter.getLectureLimit(function(response) {
+            $scope.availableLecture = response.totalLectureLimit - response.currentLecture;
+        }, function(error) {
+            console.log(error);
+        })
         $scope.courseId = $routeParams.course_id;
-        Presenter.getTeachers({presenter_id: $scope.user._id}, function(response) {
-            $scope.teachers = response;
+        Presenter.getTeachers({presenter_id: $scope.user._id, getAll: true}, function(response) {
+            $scope.teachers = response.data;
+
         }, function(error) {
             console.log(error);
         });
@@ -30,14 +37,34 @@
             $scope.lecture = {
                 course: $routeParams.course_id
             };
-            $scope.lectures = Course.getLectures({course_id: $routeParams.course_id});
+            getLecturePage();
         }
+
+        function getLecturePage(params) {
+            if(!params) params = {}
+            params.course_id = $routeParams.course_id;
+            Course.getLectures(params, function(result) {
+                $scope.lectures = result.data;
+                $scope.currentPage = result.currentPage;
+                $scope.limit = result.limit;
+                $scope.pageCount = result.pageCount;
+            });
+        }
+
+        $scope.getLecturePage = function (page,limit) {
+            getLecturePage({page:page, limit:limit});
+        };
+
+        $scope.getNumber = function(num) {
+            return new Array(num);
+        };
 
         $scope.reset = function(){
             reset();
         };
 
         $scope.createLecture = function() {
+            $scope.lecture.time = new Date($scope.lecture.time);
             Lecture.save($scope.lecture, function(response) {
                 Flash.create('success', 'Lecture has been created!');
                 reset();
@@ -47,10 +74,13 @@
         };
 
         $scope.updateLecture = function() {
+            $scope.lecture.time = new Date($scope.lecture.time);
             Lecture.update($scope.lecture, function(response) {
+                console.log(response);
                 Flash.create('success', 'Lecture updated');
                 reset();
             }, function(error) {
+                console.log(error);
                 Flash.create('danger', 'Unable to save lecture');
                 console.error(error);
             });
@@ -66,6 +96,24 @@
                 description: lectureItem.description
             };
 
+        };
+
+        $scope.confirmRemove = function(lectureItem) {
+            $scope.lectureToBeRemove = lectureItem;
+            ngDialog.open({
+                template: 'views/lecture/delete.html',
+                className: 'ngdialog-theme-default',
+                scope: $scope
+            });
+        };
+
+        $scope.removeLecture = function() {
+          Lecture.remove($scope.lectureToBeRemove, function(resopnse) {
+              Flash.create('success', 'Lecture has been Removed!');
+              reset();
+          }, function(error) {
+              Flash.create('danger', error.data);
+          })
         };
 
         reset();
@@ -91,7 +139,7 @@
 
         function loadLectureList(courseId) {
              Course.getLectures({course_id: courseId}, function(response) {
-                 var lectures = response;
+                 var lectures = response.data;
                  var lecturesCount = 0;
                  $scope.relatedLectures = [];
                  if(lectures.length < relatedLecturesSize) {
@@ -122,7 +170,7 @@
 
     }
 
-    function uploadLecture($rootScope, $scope, $location, $timeout, $routeParams, Upload, Auth, Vimeo, Lecture, Flash) {
+    function uploadLecture($rootScope, $scope, $location, $timeout, $routeParams, Upload, Auth, Vimeo, Lecture, Flash, Teacher) {
         $scope.user = null ;
         if(Auth._user) {
             $scope.user = Auth._user;
@@ -130,9 +178,11 @@
             Auth.logout();
             $location.path('/login');
         }
+        var accessToken = ''; //''e1cddd3d70aec0bda315833b9d820215';
 
-        var accessToken = 'c1a9621fabb35d6b8541c0966090699f';
-        //var accessToken = 'e1cddd3d70aec0bda315833b9d820215';
+        Teacher.getVimeoCred(function(response) {
+            accessToken = response.accessToken;
+        });
         $scope.uploadVideo = function (videoFile) {
             Vimeo.getUser(
                 {access_token: accessToken},
@@ -190,7 +240,7 @@
                                                     Flash.create('success', 'Lecture has been Uploaded!');
                                                     $location.path('/teacher/' + $scope.user._id + '/home');
                                                 }, function(error){
-
+                                                    console.log(error);
                                                 })
                                             },
                                             function (error) {

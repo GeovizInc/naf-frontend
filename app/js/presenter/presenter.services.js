@@ -26,14 +26,12 @@
                 url: Config.api + '/presenter/:presenter_id/teachers',
                 method: 'GET',
                 params: {presenter_id: '@presenter_id'},
-                isArray: true
             },
             // get courses list of the presenter
             getCourses: {
                 url: Config.api + '/presenter/:presenter_id/courses',
                 method: 'GET',
-                params: {presenter_id: '@presenter_id'},
-                isArray: true
+                params: {presenter_id: '@presenter_id'}
             },
             //get upcoming lectures list of the presenter
             getLectures: {
@@ -46,6 +44,22 @@
                 url: Config.api + '/presenter',
                 method: 'GET',
                 isArray: true
+            },
+            getLectureLimit: {
+                url: Config.api + '/presenter/lectureslimit',
+                method: 'GET'
+            },
+            getCredentials: {
+                url: Config.api + '/presenter/credentials',
+                method: 'GET'
+            },
+            updateZoomCred: {
+                url: Config.api + '/presenter/zoom',
+                method: 'PUT'
+            },
+            updateVimeoCred: {
+                url: Config.api + '/presenter/vimeo',
+                method: 'PUT'
             }
         });
     }
