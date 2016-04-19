@@ -21,6 +21,14 @@
                 url: Config.api + '/presenter',
                 method: 'PUT'
             },
+            //
+            uploadImage: {
+                url: Config.api +'/presenter/:presenter_id/image',
+                params: {presenter_id: '@presenter_id'},
+                method: 'POST',
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            },
             // get teacher list of the presenter
             getTeachers: {
                 url: Config.api + '/presenter/:presenter_id/teachers',

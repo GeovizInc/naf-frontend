@@ -127,6 +127,7 @@
 
             responseError : function(rejection) {
                 var Auth = $injector.get('Auth');
+                console.log(rejection);
                 if(rejection.status === 401){
                    // Flash.create('danger', 'Error Please Login!');
                     console.log(rejection.data);

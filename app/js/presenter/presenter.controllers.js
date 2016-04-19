@@ -6,8 +6,22 @@
 
     angular.module('naf.presenter')
         .controller('PresenterViewController', ['$rootScope', '$scope', '$location', '$log', '$routeParams', 'Presenter', 'Auth', 'Course', 'Flash', presenterViewController])
-        .controller('PresenterEditController', ['$rootScope', '$scope', '$location', '$log', '$routeParams', 'Auth', 'Presenter', 'Flash', presenterEditController]);
+        .controller('PresenterEditController', ['$rootScope', '$scope', '$location', '$log', '$routeParams', 'Auth', 'Presenter', 'Flash', presenterEditController])
+        .directive('fileModel', ['$parse', function ($parse) {
+            return {
+                restrict: 'A',
+                link: function(scope, element, attrs) {
+                    var model = $parse(attrs.fileModel);
+                    var modelSetter = model.assign;
 
+                    element.bind('change', function(){
+                        scope.$apply(function(){
+                            modelSetter(scope, element[0].files[0]);
+                        });
+                    });
+                }
+            };
+        }]);
     //presenterViewController
     function presenterViewController($rootScope, $scope, $location, $log, $routeParams, Presenter, Auth, Course, Flash) {
         $scope.user = null;
@@ -62,6 +76,7 @@
         $scope.user = null;
         $scope.showZoominfo = false;
         $scope.showViemoInfo = false;
+        $scope.myFile =null;
         //check current user
         if(!Auth._user) {
             $location.path('/login');
@@ -70,6 +85,7 @@
             function(response) {
                 //console.log(response);
                 $scope.user = response;
+                console.log($scope.user);
             }, function(error) {
                 Flash.create('danger','There is no such Presenter !');
                 $location.path('/search');
@@ -83,6 +99,21 @@
                 description: $scope.user.description,
                 imageLink: $scope.user.imageLink
             };
+
+            console.log($scope.myFile);
+            var fd = new FormData();
+            fd.append("file", $scope.myFile);
+
+            Presenter.uploadImage({presenter_id: Auth._user._id},
+                fd,
+                function(User) {
+                    $log.info('Image upload successful');
+                },
+                function(error) {
+                    $log.error(error + ': Image upload failed');
+                }
+            );
+
             Presenter.update(presenter, function(response){
                 Flash.create('success',"Update Successful");
                 $location.path('/presenter/'+$scope.user._id);
