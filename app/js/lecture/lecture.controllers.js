@@ -19,11 +19,17 @@
             Auth.logout();
             $location.path('/login');
         }
-        Presenter.getLectureLimit(function(response) {
-            $scope.availableLecture = response.totalLectureLimit - response.currentLecture;
-        }, function(error) {
-            console.log(error);
-        })
+
+        function updateLectureLimit() {
+            Presenter.getLectureLimit(function(response) {
+                $scope.availableLecture = response.totalLectureLimit - response.currentLecture;
+            }, function(error) {
+                console.log(error);
+            });
+        }
+
+        updateLectureLimit();
+
         $scope.courseId = $routeParams.course_id;
         Presenter.getTeachers({presenter_id: $scope.user._id, getAll: true}, function(response) {
             $scope.teachers = response.data;
@@ -38,6 +44,7 @@
                 course: $routeParams.course_id
             };
             getLecturePage();
+            updateLectureLimit();
         }
 
         function getLecturePage(params) {
