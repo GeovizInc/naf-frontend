@@ -6,22 +6,8 @@
 
     angular.module('naf.presenter')
         .controller('PresenterViewController', ['$rootScope', '$scope', '$location', '$log', '$routeParams', 'Presenter', 'Auth', 'Course', 'Flash', presenterViewController])
-        .controller('PresenterEditController', ['$rootScope', '$scope', '$location', '$log', '$routeParams', 'Auth', 'Presenter', 'Flash', presenterEditController])
-        .directive('fileModel', ['$parse', function ($parse) {
-            return {
-                restrict: 'A',
-                link: function(scope, element, attrs) {
-                    var model = $parse(attrs.fileModel);
-                    var modelSetter = model.assign;
+        .controller('PresenterEditController', ['$rootScope', '$scope', '$location', '$log', '$routeParams', 'Auth', 'Presenter', 'Flash', presenterEditController]);
 
-                    element.bind('change', function(){
-                        scope.$apply(function(){
-                            modelSetter(scope, element[0].files[0]);
-                        });
-                    });
-                }
-            };
-        }]);
     //presenterViewController
     function presenterViewController($rootScope, $scope, $location, $log, $routeParams, Presenter, Auth, Course, Flash) {
         $scope.user = null;
@@ -101,19 +87,19 @@
             };
 
             console.log($scope.myFile);
-            var fd = new FormData();
-            fd.append("file", $scope.myFile);
-
-            Presenter.uploadImage({presenter_id: Auth._user._id},
-                fd,
-                function(User) {
-                    $log.info('Image upload successful');
-                },
-                function(error) {
-                    $log.error(error + ': Image upload failed');
-                }
-            );
-
+            if($scope.myFile) {
+                var fd = new FormData();
+                fd.append("file", $scope.myFile);
+                Presenter.uploadImage({presenter_id: Auth._user._id},
+                    fd,
+                    function(User) {
+                        $log.info('Image upload successful');
+                    },
+                    function(error) {
+                        $log.error(error + ': Image upload failed');
+                    }
+                );
+            }
             Presenter.update(presenter, function(response){
                 Flash.create('success',"Update Successful");
                 $location.path('/presenter/'+$scope.user._id);

@@ -22,6 +22,14 @@
                 url: Config.api + '/lecture/delete',
                 method: 'POST'
             },
+
+            uploadImage: {
+                url: Config.api +'/lecture/:lecture_id/image',
+                params: {lecture_id: '@lecture_id'},
+                method: 'POST',
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            }
         });
     }
 

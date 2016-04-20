@@ -26,6 +26,14 @@
                 url: Config.api + '/course/:course_id/lectures',
                 method: 'GET',
                 params: {course_id: '@course_id'}
+            },
+
+            uploadImage: {
+                url: Config.api +'/course/:course_id/image',
+                params: {course_id: '@course_id'},
+                method: 'POST',
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
             }
 
         });

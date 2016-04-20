@@ -28,6 +28,13 @@
                 method: 'GET',
                 params: {teacher_id: '@teacher_id'},
             },
+            uploadImage: {
+                url: Config.api +'/teacher/:teacher_id/image',
+                params: {teacher_id: '@teacher_id'},
+                method: 'POST',
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            },
             getVimeoCred: {
                 url: Config.api + '/teacher/getVimeoCred',
                 method: 'GET'

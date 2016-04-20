@@ -33,6 +33,10 @@
                             <date-time-picker id="date" class="form-control" date-format="MM/DD/YYYY h:mm A" ng-model="lecture.time" placeholder="Date"></date-time-picker>
                         </div>
                         <div class="form-group">
+                            <label for="picture">Picture</label>
+                            <input type="file" id ="picture" file-model="myFile" accept="image/*"/>
+                        </div>
+                        <div class="form-group">
                             <label for="intro">Introduction</label>
                             <textarea class="form-control" ng-model="lecture.description" rows="5" id="intro"></textarea>
                         </div>

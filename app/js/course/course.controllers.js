@@ -27,7 +27,20 @@
                 //"imageLink": "http://flickr.com/123"
             };
             Course.save(course, function(response) {
-                console.log(response);
+                if($scope.myFile) {
+                    var fd = new FormData();
+                    fd.append("file", $scope.myFile);
+                    Course.uploadImage({course_id: response._id},
+                        fd,
+                        function(ImageLink) {
+                            console.log('Image upload successful');
+                            $scope.course.imageLink = ImageLink;
+                        },
+                        function(error) {
+                            console.log(error + ': Image upload failed');
+                        }
+                    );
+                }
                 Flash.create('success', 'Course has been created!');
                 $location.path('/course');
             }, function(error) {
@@ -127,6 +140,22 @@
         });
 
         $scope.updateCourse = function() {
+            console.log($routeParams.course_id);
+            if($scope.myFile) {
+                var fd = new FormData();
+                fd.append("file", $scope.myFile);
+                Course.uploadImage({course_id: $routeParams.course_id},
+                    fd,
+                    function(ImageLink) {
+                        console.log('Image upload successful');
+                        $scope.course.imageLink = ImageLink;
+                    },
+                    function(error) {
+                        console.log.error(error + ': Image upload failed');
+                    }
+                );
+            }
+
           Course.update($scope.course, function(response) {
               console.log(response);
               Flash.create('success', 'Course has been updated!');
@@ -159,4 +188,5 @@
         }
 
     }
+
 })();

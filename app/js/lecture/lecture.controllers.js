@@ -73,6 +73,21 @@
         $scope.createLecture = function() {
             $scope.lecture.time = new Date($scope.lecture.time);
             Lecture.save($scope.lecture, function(response) {
+                console.log(response._id);
+                if($scope.myFile) {
+                    var fd = new FormData();
+                    fd.append("file", $scope.myFile);
+                    Lecture.uploadImage({lecture_id: response._id},
+                        fd,
+                        function(ImageLink) {
+                            console.log('Image upload successful');
+                            $scope.lecture.imageLink = ImageLink;
+                        },
+                        function(error) {
+                            console.log(error + ': Image upload failed');
+                        }
+                    );
+                }
                 Flash.create('success', 'Lecture has been created!');
                 reset();
             }, function(error) {
@@ -84,6 +99,20 @@
             $scope.lecture.time = new Date($scope.lecture.time);
             Lecture.update($scope.lecture, function(response) {
                 console.log(response);
+                if($scope.myFile) {
+                    var fd = new FormData();
+                    fd.append("file", $scope.myFile);
+                    Lecture.uploadImage({lecture_id: response._id},
+                        fd,
+                        function(ImageLink) {
+                            console.log('Image upload successful');
+                            $scope.lecture.imageLink = ImageLink;
+                        },
+                        function(error) {
+                            console.log(error + ': Image upload failed');
+                        }
+                    );
+                }
                 Flash.create('success', 'Lecture updated');
                 reset();
             }, function(error) {

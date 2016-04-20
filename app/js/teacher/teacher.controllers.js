@@ -72,6 +72,22 @@
             Teacher.save(credential, function(response){
                 $scope.teacher._id = response._id;
                 Teacher.update($scope.teacher, function(response) {
+
+                    if($scope.myFile) {
+                        var fd = new FormData();
+                        fd.append("file", $scope.myFile);
+                        Teacher.uploadImage({teacher_id: $scope.teacher._id},
+                            fd,
+                            function(ImageLink) {
+                                console.log('Image upload successful');
+                                $scope.teacher.imageLink = ImageLink;
+                            },
+                            function(error) {
+                                console.log(error + ': Image upload failed');
+                            }
+                        );
+                    }
+
                     Flash.create('success', 'Teacher has been created!');
                     $location.path('/teacher');
                 }, function(error) {
@@ -177,6 +193,20 @@
 
         $scope.updateTeacher = function() {
             Teacher.update($scope.teacher, function(response) {
+                if($scope.myFile) {
+                    var fd = new FormData();
+                    fd.append("file", $scope.myFile);
+                    Teacher.uploadImage({teacher_id: $scope.teacher._id},
+                        fd,
+                        function(ImageLink) {
+                            console.log('Image upload successful');
+                            $scope.teacher.imageLink = ImageLink;
+                        },
+                        function(error) {
+                            console.log(error + ': Image upload failed');
+                        }
+                    );
+                }
                 console.log(response);
                 Flash.create('success', 'Teacher has been updated!');
                 $location.path('/teacher');
