@@ -25,9 +25,9 @@
                             <h4><i class="icon fa fa-warning"></i>Out of Quota</h4>
                             {{noQuotaMessage}}
                         </div>
-                        <div class="form-group" ng-if="!isNoQuota">
+                        <div class="form-group">
                             <label for="videoFile">Avatar</label>
-                            <input class="form-control" type="file" id="videoFile" name="videoFile" ngf-select ng-model="videoFile" required
+                            <input class="form-control" type="file" id="videoFile" name="videoFile" ngf-select ng-model="videoFile" ng-disabled="isNoQuota" required
                                    placeholder="File">
                             <p class="help-block">Block-level help text here.</p>
                         </div>
@@ -35,7 +35,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary" ng-if="!isNoQuota">Submit</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="isNoQuota">Submit</button>
                     </div>
                 </form>
                 <div class="progress progress-sm active" ng-class="videoFile.progress != 100 ? 'active' : ''">

@@ -211,16 +211,15 @@
             );
         });
 
-        /*console.log(accessToken);
-
-        */
-
         $scope.uploadVideo = function (videoFile) {
             Vimeo.getUser(
                 {access_token: accessToken},
                 function (data) {
                     var userId = getVimeoUserIdByUserUri(data.uri);
                     var userQuota = data.upload_quota;
+                    console.log(userId);
+                    console.log(userQuota);
+                    console.log(videoFile);
                     var fileSize = videoFile.size;
                     console.log(userQuota.quota.hd);
                     console.log(userQuota.quota.sd);
