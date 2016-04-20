@@ -178,18 +178,43 @@
     }
 
     function uploadLecture($rootScope, $scope, $location, $timeout, $routeParams, Upload, Auth, Vimeo, Lecture, Flash, Teacher) {
-        $scope.user = null ;
+        $scope.user = null;
         if(Auth._user) {
             $scope.user = Auth._user;
         } else {
             Auth.logout();
             $location.path('/login');
         }
+
+        $scope.isNoQuota = false;
         var accessToken = ''; //''e1cddd3d70aec0bda315833b9d820215';
 
         Teacher.getVimeoCred(function(response) {
             accessToken = response.accessToken;
+            console.log(accessToken);
+            Vimeo.getUser(
+                {access_token: accessToken},
+                function (data) {
+                    var userQuota = data.upload_quota;
+                    if (!userQuota.quota.hd && !userQuota.quota.sd){
+                        $scope.isNoQuota = true;
+                        $scope.noQuotaMessage = 'Out of daily Quota, please try tomorrow.';
+                    }
+                    if (userQuota.space.free == 0){
+                        $scope.isNoQuota = true;
+                        $scope.noQuotaMessage = 'Out of Weekly Quota, please try next week.';
+                    }
+                },
+                function (error) {
+
+                }
+            );
         });
+
+        /*console.log(accessToken);
+
+        */
+
         $scope.uploadVideo = function (videoFile) {
             Vimeo.getUser(
                 {access_token: accessToken},
