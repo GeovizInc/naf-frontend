@@ -56,6 +56,7 @@
                             <th>Name</th>
                             <th>Course</th>
                             <th>Time</th>
+                            <th>Duration</th>
                             <th width="1%"></th>
                         </tr>
                         <tr ng-repeat="lecture in lectures">
@@ -63,6 +64,7 @@
                             <td>{{lecture.name}}</td>
                             <td><a href="#/course/{{lecture.course._id}}/view">{{lecture.course.name}}</a></td>
                             <td>{{lecture.time}}</td>
+                            <td>40 minutes</td>
                             <td ng-if="lecture.vimeoLink"><a href="#/lecture/{{lecture._id}}" type="button" class="btn btn-default btn-xs">Watch</a></td>
                             <td ng-if="!lecture.vimeoLink"><a target="_blank" href="{{lecture.zoomStartLink}}" type="button" class="btn btn-default btn-xs">Start</a><a href="#/lecture/{{lecture._id}}/upload" type="button" class="btn btn-default btn-xs">Upload</a></td>
                             <!--<td ng-if="(lecture.time|date:'yyyy-MM-ddTHH:mm:ss') > (current|date:'yyyy-MM-ddTHH:mm:ss')"><a target="_blank" href="{{lecture.zoomStartLink}}" type="button" class="btn btn-default btn-xs">Start</a></td>-->
