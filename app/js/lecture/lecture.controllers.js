@@ -129,7 +129,8 @@
                 name: lectureItem.name,
                 teacher: lectureItem.teacher._id,
                 time: moment(new Date(lectureItem.time)).format('MM/DD/YYYY h:mm A'),
-                description: lectureItem.description
+                description: lectureItem.description,
+                imageLink:lectureItem.imageLink
             };
 
         };

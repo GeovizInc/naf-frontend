@@ -81,7 +81,11 @@
                             <th width="1%"></th>
                         </tr>
                         <tr ng-repeat="lectureItem in lectures">
-                            <td><a href="#/lecture/{{lectureItem._id}}"><img src="http://placehold.it/100x75"/></a></td>
+                            <td><a href="#/lecture/{{lectureItem._id}}">
+                                <img ng-if="!lectureItem.imageLink" src="http://placehold.it/100x75"/>
+                                <img ng-if="lectureItem.imageLink" class="middle-image" src="http://127.0.0.1:3000/static/{{lectureItem.imageLink}}"/>
+
+                            </a></td>
                             <td><a href="#/lecture/{{lectureItem._id}}">{{lectureItem.name}}</a></td>
                             <td class="teacher"><a href="#/teacher/{{lectureItem.teacher._id}}">{{lectureItem.teacher.name}}</a></td>
                             <td>{{lectureItem.time | date:'medium'}}</td>

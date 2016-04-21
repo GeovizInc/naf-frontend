@@ -32,7 +32,10 @@
                             <th width="1%"></th>
                         </tr>
                         <tr ng-repeat="course in courses">
-                            <td><a href="#/course/{{course._id}}/view"><img src="http://placehold.it/100x75"/></a></td>
+                            <td><a href="#/course/{{course._id}}/view">
+                                <img ng-if="!course.imageLink" src="http://placehold.it/100x75"/>
+                                <img ng-if="course.imageLink" class = "middle-image" src="http://127.0.0.1:3000/static/{{course.imageLink}}"/>
+                            </a></td>
                             <td class="course-name"><a href="#/course/{{course._id}}/view">{{course.name}}</a></td>
                             <!--<td class="teacher"><a href="">Liang Guo</a> <a href="">Jiadong Hu</a></td>-->
                             <td>3 days ago</td>

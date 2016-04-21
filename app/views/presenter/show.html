@@ -6,8 +6,10 @@
             <!-- Profile Image -->
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="images/default-profile-image.png"
+                    <img ng-if="!presenter.imageLink" class="profile-user-img img-responsive img-circle" src="images/default-profile-image.png"
                          alt="User profile picture">
+                    <img ng-if="presenter.imageLink"   class="profile img-bordered profile-user-img img-responsive img-circle" src="http://127.0.0.1:3000/static/{{presenter.imageLink}}"/>
+
                     <h3 class="profile-username text-center">{{presenter.name}}</h3>
 
                     <!--<ul class="list-group list-group-unbordered">
@@ -60,7 +62,9 @@
                     <!-- Post -->
                     <div class="post" ng-repeat="course in courses">
                         <div class="course-block">
-                            <img class="img-bordered" src="http://placehold.it/200x150">
+                            <img ng-if="!course.imageLink" class="img-bordered" src="http://placehold.it/200x150">
+                            <img ng-if="course.imageLink"  class="img-bordered large-image" src="http://127.0.0.1:3000/static/{{course.imageLink}}"/>
+
                             <span class='course-name'>
                                 <a href="#/course/{{course._id}}/view">{{course.name}}</a>
                             </span>

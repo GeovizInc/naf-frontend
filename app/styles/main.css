@@ -97,3 +97,18 @@
 .pointer {
     cursor: pointer;
 }
+
+.middle-image {
+    width:100px;
+    height:75px
+    }
+
+.large-image {
+    width:200px;
+    height:150px
+}
+
+.profile {
+    width:100px;
+    height:100px
+}
