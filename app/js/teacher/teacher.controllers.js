@@ -5,15 +5,16 @@
     'use strict';
 
     angular.module('naf.teacher')
-        .controller('TeacherHomeController', ['$rootScope', '$scope', '$location', '$routeParams', 'Teacher', 'Auth', 'Flash', teacherHomeController])
+        .controller('TeacherHomeController', ['$rootScope', '$scope', '$location', '$routeParams', 'Teacher', 'Auth', 'Flash', 'Config', teacherHomeController])
         .controller('TeacherStoreController', ['$rootScope', '$scope', '$location', 'Teacher', 'Auth', 'Flash', teacherStoreController])
-        .controller('TeacherIndexController', ['$rootScope', '$scope', '$location', 'Presenter', 'Auth', 'Flash', teacherIndexController])
-        .controller('TeacherShowController', ['$rootScope', '$scope', '$location', '$routeParams', 'Teacher', 'Auth',  'Flash', teacherShowController])
+        .controller('TeacherIndexController', ['$rootScope', '$scope', '$location', 'Presenter', 'Auth', 'Flash', 'Config', teacherIndexController])
+        .controller('TeacherShowController', ['$rootScope', '$scope', '$location', '$routeParams', 'Teacher', 'Auth',  'Flash', 'Config', teacherShowController])
         .controller('TeacherUpdateController', ['$rootScope', '$scope', '$location', '$routeParams', 'Teacher', 'Auth',  'Flash', teacherUpdateController]);
 
     //TeacherHomeController
-    function teacherHomeController($rootScope, $scope, $location, $routeParams, Teacher, Auth, Flash) {
+    function teacherHomeController($rootScope, $scope, $location, $routeParams, Teacher, Auth, Flash, Config) {
         $scope.user = null;
+        $scope.prefix = Config.imagePrefix;
         if(!Auth._user) {
             Flash.create('danger','Please Login');
             $location.path('/login');
@@ -101,9 +102,10 @@
     }
 
     //TeacherIndexController
-    function teacherIndexController($rootScope, $scope, $location, Presenter, Auth, Flash) {
+    function teacherIndexController($rootScope, $scope, $location, Presenter, Auth, Flash, Config) {
         $scope.user = null;
         $scope.teachers = null;
+        $scope.prefix = Config.imagePrefix;
         if(!Auth._user) {
             Flash.create('danger','Please Login');
             $location.path('/login');
@@ -141,9 +143,10 @@
 
 
     //TeacherShowController
-    function teacherShowController($rootScope, $scope, $location, $routeParams, Teacher, Auth, Flash) {
+    function teacherShowController($rootScope, $scope, $location, $routeParams, Teacher, Auth, Flash, Config) {
         $scope.teacher = null;
         $scope.isPresenter = null;
+        $scope.prefix = Config.imagePrefix;
         Teacher.get({teacher_id: $routeParams.teacher_id}, function(response) {
             console.log(response);
             $scope.teacher = response;

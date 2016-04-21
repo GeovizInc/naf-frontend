@@ -6,8 +6,8 @@
 
     angular.module('naf.course')
         .controller('CourseStoreController', ['$rootScope', '$scope', '$location', 'Course', 'Auth', 'Flash', courseStoreController])
-        .controller('CourseListController', ['$rootScope', '$scope', '$location', 'Presenter', 'Auth', 'Flash', courseListController])
-        .controller('CourseViewController', ['$rootScope', '$scope', '$location', '$routeParams', 'Course', 'Flash', 'Auth', courseViewController])
+        .controller('CourseListController', ['$rootScope', '$scope', '$location', 'Presenter', 'Auth', 'Flash', 'Config', courseListController])
+        .controller('CourseViewController', ['$rootScope', '$scope', '$location', '$routeParams', 'Course', 'Flash', 'Auth', 'Config', courseViewController])
         .controller('CourseEditController', ['$rootScope', '$scope', '$location', '$routeParams', 'Course', 'Flash', 'ngDialog', courseEditController]);
 
     //CourseStoreController
@@ -50,9 +50,10 @@
     }
 
     //courseListController
-    function courseListController($rootScope, $scope, $location, Presenter, Auth, Flash) {
+    function courseListController($rootScope, $scope, $location, Presenter, Auth, Flash, Config) {
         $scope.user = null;
         $scope.courses = null;
+        $scope.prefix = Config.imagePrefix;
         if(!Auth._user) {
             Flash.create('danger','Please Login');
             $location.path('/login');
@@ -90,9 +91,10 @@
     }
 
     //CourseViewController
-    function courseViewController($rootScope, $scope, $location, $routeParams, Course, Flash, Auth) {
+    function courseViewController($rootScope, $scope, $location, $routeParams, Course, Flash, Auth, Config) {
         $scope.course = null;
         $scope.isPresenter = null;
+        $scope.prefix = Config.imagePrefix;
         Course.get({course_id: $routeParams.course_id}, function(response) {
             $scope.course = response;
             if(Auth._user && Auth._user._id == $scope.course.presenter._id) {

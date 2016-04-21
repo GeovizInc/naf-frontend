@@ -32,7 +32,10 @@
                             <th width="1%"></th>
                         </tr>
                         <tr ng-repeat="teacher in teachers">
-                            <td><a href="#/teacher/{{teacher._id}}"><img src="http://placehold.it/50x50"/></a></td>
+                            <td><a href="#/teacher/{{teacher._id}}">
+                                <img ng-if="!teacher.imageLink" src="http://placehold.it/50x50"/>
+                                <img ng-if="teacher.imageLink" style="width:50px;height:50px" src="{{prefix+teacher.imageLink}}">
+                            </a></td>
                             <td><a href="#/teacher/{{teacher._id}}">{{teacher.name}}</a></td>
                             <td>{{teacher.email}}</td>
                             <td><a href="#/teacher/{{teacher._id}}/edit" type="button" class="btn btn-default btn-s">Edit</a></td>

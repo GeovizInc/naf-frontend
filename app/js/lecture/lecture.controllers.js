@@ -5,14 +5,15 @@
     'use strict';
 
     angular.module('naf.lecture')
-        .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', 'ngDialog', lectureStoreController])
-        .controller('LectureController', ['$rootScope', '$scope', '$location', '$sce', '$routeParams', 'Course', 'Lecture', LectureController])
+        .controller('LectureStoreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Presenter', 'Lecture', 'Course', 'Auth', 'Flash', 'ngDialog', 'Config', lectureStoreController])
+        .controller('LectureController', ['$rootScope', '$scope', '$location', '$sce', '$routeParams', 'Course', 'Lecture', 'Config', LectureController])
         .controller('UploadLectureController', ['$rootScope', '$scope', '$location', '$timeout', '$routeParams', 'Upload', 'Auth', 'Vimeo', 'Lecture', 'Flash', 'Teacher', uploadLecture]);
 
     //LectureController
-    function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash, ngDialog) {
+    function lectureStoreController($rootScope, $scope, $location, $routeParams, Presenter, Lecture, Course, Auth, Flash, ngDialog, Config) {
         $scope.user = null ;
         $scope.availableLecture = 0;
+        $scope.prefix = Config.imagePrefix;
         if(Auth._user) {
             $scope.user = Auth._user;
         } else {
@@ -157,7 +158,8 @@
     }
 
     //LectureController
-    function LectureController($rootScope, $scope, $location, $sce, $routeParams, Course, Lecture) {
+    function LectureController($rootScope, $scope, $location, $sce, $routeParams, Course, Lecture, Config) {
+        $scope.prefix = Config.imagePrefix;
         var lectureId = $routeParams.lecture_id;
         var relatedLecturesSize = 2;
         loadLecture();

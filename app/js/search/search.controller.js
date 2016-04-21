@@ -5,13 +5,14 @@
     'use strict';
 
     angular.module('naf.search')
-        .controller('SearchViewController', ['$routeParams', '$scope', '$location', '$log', 'Search', 'Presenter', 'Flash', searchViewController]);
+        .controller('SearchViewController', ['$routeParams', '$scope', '$location', '$log', 'Search', 'Presenter', 'Flash', 'Config', searchViewController]);
 
-    function searchViewController($routeParams, $scope, $location, $log, Search, Presenter, Flash) {
+    function searchViewController($routeParams, $scope, $location, $log, Search, Presenter, Flash, Config) {
         $scope.courseName = $routeParams.courseName || '';
         $scope.school = false;
         $scope.schools = Presenter.list({});
         $scope.search = search;
+        $scope.prefix = Config.imagePrefix;
 
         search();
 

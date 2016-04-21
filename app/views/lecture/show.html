@@ -47,7 +47,7 @@
                         <div class="related-lecture-block">
                             <a href="#/lecture/{{relatedLecture._id}}">
                                 <img ng-if="!relatedLecture.imageLink" class="img-bordered" src="http://placehold.it/100x100">
-                                <img ng-if="relatedLecture.imageLink" style="width:100px;height:100px" class="img-bordered" src="http://127.0.0.1:3000/static/{{relatedLecture.imageLink}}"/>
+                                <img ng-if="relatedLecture.imageLink" style="width:100px;height:100px" class="img-bordered" src="{{prefix+relatedLecture.imageLink}}"/>
 
                             </a>
                             <span class='lecture-name'>

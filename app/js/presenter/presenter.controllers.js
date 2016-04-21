@@ -5,14 +5,15 @@
     'use strict';
 
     angular.module('naf.presenter')
-        .controller('PresenterViewController', ['$rootScope', '$scope', '$location', '$log', '$routeParams', 'Presenter', 'Auth', 'Course', 'Flash', presenterViewController])
+        .controller('PresenterViewController', ['$rootScope', '$scope', '$location', '$log', '$routeParams', 'Presenter', 'Auth', 'Course', 'Flash', 'Config', presenterViewController])
         .controller('PresenterEditController', ['$rootScope', '$scope', '$location', '$log', '$routeParams', 'Auth', 'Presenter', 'Flash', presenterEditController]);
 
     //presenterViewController
-    function presenterViewController($rootScope, $scope, $location, $log, $routeParams, Presenter, Auth, Course, Flash) {
+    function presenterViewController($rootScope, $scope, $location, $log, $routeParams, Presenter, Auth, Course, Flash, Config) {
         $scope.user = null;
         $scope.presenter = null;
         $scope.courses = null;
+        $scope.prefix = Config.imagePrefix;
         if(Auth._user) {
             $scope.user = Auth._user;
         }

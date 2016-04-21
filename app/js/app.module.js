@@ -6,7 +6,7 @@
 
     angular.module('naf', ['ngRoute', 'ngResource', 'angular-storage', 'ngFileUpload', 'angular-jwt', 'flash', 'ngDialog',
         'naf.presenter', 'naf.config', 'naf.teacher', 'naf.course', 'naf.lecture', 'naf.attendee', 'naf.auth', 'naf.search'])
-        .controller('MainController',['$rootScope', '$scope', '$location', '$log', 'Presenter', 'Auth', 'Flash', mainController])
+        .controller('MainController',['$rootScope', '$scope', '$location', '$log', 'Presenter', 'Auth', 'Flash', 'Config', mainController])
         .config(['$httpProvider', configApp]);
 
     function configApp($httpProvider) {
@@ -14,10 +14,10 @@
         $httpProvider.interceptors.push('AuthInterceptor');
     }
 
-    function mainController($rootScope, $scope, $location, $log, Presenter, Auth, Flash) {
+    function mainController($rootScope, $scope, $location, $log, Presenter, Auth, Flash, Config) {
         $scope.loggedIn = null;
         $scope.user = null;
-
+        $scope.prefix = Config.imagePrefix;
         $rootScope.$on('userLogin', function(event, user) {
             $scope.loggedIn = Auth.loggedIn;
             $scope.user = Auth._user;

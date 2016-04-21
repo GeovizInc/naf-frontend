@@ -29,7 +29,8 @@
                     <!-- Post -->
                     <div class="post" ng-repeat="course in courses">
                         <div class="course-block">
-                            <img class="img-bordered" src="{{course.imageLink || 'http://placehold.it/200x150'}} ">
+                            <img ng-if="!course.imageLink" class="img-bordered" src="http://placehold.it/200x150">
+                            <img ng-if="course.imageLink"  class="large-image img-bordered" src="{{prefix+course.imageLink}}">
                             <span class='course-name'>
                                 <a href="#/course/{{course._id}}/view">{{course.name}}</a>
                             </span>
