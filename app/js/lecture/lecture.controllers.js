@@ -228,6 +228,8 @@
                 {access_token: accessToken},
                 function (data) {
                     var userQuota = data.upload_quota;
+                    console.log(userQuota.quota.hd);
+                    console.log(userQuota.quota.sd);
                     if (!userQuota.quota.hd && !userQuota.quota.sd){
                         $scope.isNoQuota = true;
                         $scope.noQuotaMessage = 'Out of daily Quota, please try tomorrow.';
